@@ -1,0 +1,19 @@
+.splash-screen {
+  background-color: #282c34;
+  min-height: 100vh;
+  color: white;
+}
+
+.splash-screen .logo {
+  height: 30vmin;
+}
+
+.splash-screen .title {
+  padding: 8px;
+  font-size: calc(14px + 3vmin);
+}
+
+.splash-screen .footer {
+  padding: 3px;
+  font-size: calc(6px + 1vmin);
+}
