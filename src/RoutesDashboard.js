@@ -8,6 +8,7 @@ import {
 import Dashboard from "./containers/Dashboard";
 import Games from "./containers/Games";
 import Players from "./containers/Players";
+import NotFound from "./containers/NotFound";
 
 export default function Routes() {
   // The `path` lets us build <Route> paths that are
@@ -20,6 +21,8 @@ export default function Routes() {
       <Route path={path} exact component={Dashboard} />
       <Route path={`${path}games`} component={Games} />
       <Route path={`${path}players`} component={Players} />
+      { /* Finally, catch all unmatched routes */ }
+      <Route component={NotFound} />
     </Switch>
   );
 }
