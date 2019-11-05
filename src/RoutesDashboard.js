@@ -2,7 +2,6 @@ import React from "react";
 import {
   Route,
   Switch,
-  Redirect,
   useRouteMatch
 } from "react-router-dom";
 import Dashboard from "./containers/Dashboard";
@@ -24,25 +23,5 @@ export default function Routes() {
       { /* Finally, catch all unmatched routes */ }
       <Route component={NotFound} />
     </Switch>
-  );
-}
-
-// A wrapper for <Route> that redirects to the login
-// screen if you're not yet authenticated.
-function PrivateRoute({...rest}) {
-  const route = true ?
-    <Route {...rest} /> :
-    <Route render={({ location }) => (
-      <Redirect
-        to={{
-          pathname: "/login",
-          state: { from: location }
-        }}
-      />
-    )}
-  />
-
-  return (
-    route
   );
 }
