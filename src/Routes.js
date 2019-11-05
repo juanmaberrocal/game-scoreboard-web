@@ -4,22 +4,25 @@ import {
   Switch,
   Redirect
 } from "react-router-dom";
+import { connect } from "react-redux";
+
 import Login from "./containers/Login";
 import Home from "./containers/Home";
 
-export default function Routes() {
+const Routes = (props) => {
   return (
     <Switch>
       <Route path="/login" exact component={Login} />
-      <PrivateRoute path="/" component={Home} />
+      <PrivateRoute auth={props.authorizationStatus} path="/" component={Home} />
     </Switch>
   );
 }
 
 // A wrapper for <Route> that redirects to the login
 // screen if you're not yet authenticated.
-function PrivateRoute({...rest}) {
-  const route = true ?
+const PrivateRoute = ({auth, ...rest}) => {
+  const isAuth = ['Uninitialized', 'Unauthenticated'].indexOf(auth) === -1
+  const route = isAuth ?
     <Route {...rest} /> :
     <Route render={({ location }) => (
       <Redirect
@@ -35,3 +38,10 @@ function PrivateRoute({...rest}) {
     route
   );
 }
+
+const mapStateToProps = state => {
+  return {
+    authorizationStatus: state.currentPlayer.status
+  };
+};
+export default connect(mapStateToProps)(Routes);
