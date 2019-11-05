@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import API from '../services/api';
+
 import logo from '../logo.png';
 import './splash-screen.css';
 
@@ -17,27 +19,37 @@ function LoadingMessage() {
 
 function withSplashScreen(WrappedComponent) {
   return class extends Component {
+    _retryDuration = 3000;
+    _retryLimit = 5;
+
     constructor(props) {
       super(props);
+      this._retryCount = 0;
       this.state = {
         loading: true,
       };
     }
 
     async componentDidMount() {
-      try {
-        // await auth0Client.loadSession();
-        // setTimeout(() => {
-        //   this.setState({
-        //     loading: false,
-        //   });
-        // }, 1500)
-      } catch (err) {
-        console.log(err);
-        this.setState({
-          loading: false,
+      this._loadApi();
+    }
+
+    _loadApi() {
+      API.get("ping")
+        .then(response => {
+          this.setState({loading: false});
+        })
+        .catch(error => {
+          if (this._retryCount < this._retryLimit) {
+            this._retryCount++;
+
+            setTimeout(() => {
+              this._loadApi()
+            }, this._retryDuration);
+          } else {
+            throw Error('API Failed to Respond');
+          }
         });
-      }
     }
 
     render() {
