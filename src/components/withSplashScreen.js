@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import API from '../services/api';
+import API from '../services/Api';
 
 import logo from '../logo.png';
 import './splash-screen.css';
