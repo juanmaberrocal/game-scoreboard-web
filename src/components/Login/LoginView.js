@@ -1,5 +1,6 @@
-import React, { Component } from "react";
-import { connect } from 'react-redux';
+import React from "react";
+import PropTypes from "prop-types";
+import { Formik } from 'formik';
 import {
   Button,
   Form,
@@ -7,23 +8,34 @@ import {
 } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
+import LoginSchema from './LoginSchema';
 import logo from '../../assets/logo.png';
 import "./Login.css";
 
-class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: "",
-      password: ""
-    };
-  }
-
-  render () {
-    return (
-      <div className="Login d-flex flex-column align-items-center justify-content-center">
-        <img src={logo} className="logo" alt="logo" />
-        <Form className="login-form">
+const Login = (props) => (
+  <div className="Login d-flex flex-column align-items-center justify-content-center">
+    <img src={logo} className="logo" alt="logo" />
+    <Formik
+      validationSchema={LoginSchema}
+      initialValues={{
+        email: props.email,
+        password: props.password
+      }}
+      onSubmit={props.onSubmit}
+    >
+      {({
+        isSubmitting,
+        handleSubmit,
+        handleChange,
+        handleBlur,
+        values,
+        touched,
+        isValid,
+        errors,
+      }) => (
+        <Form className="login-form"
+          onSubmit={handleSubmit}
+          noValidate >
           <Form.Group controlId="email">
             <InputGroup>
               <InputGroup.Prepend>
@@ -33,10 +45,12 @@ class Login extends Component {
               </InputGroup.Prepend>
               <Form.Control type="email"
                 placeholder="Email"
-                value={this.state.email}
+                value={values.email}
+                onChange={handleChange}
+                isInvalid={!!errors.email}
                 required />
               <Form.Control.Feedback type="invalid">
-                Please choose a username.
+                {errors.email}
               </Form.Control.Feedback>
             </InputGroup>
           </Form.Group>
@@ -49,7 +63,8 @@ class Login extends Component {
               </InputGroup.Prepend>
               <Form.Control type="password"
                 placeholder="Password"
-                value={this.state.password}
+                value={values.password}
+                onChange={handleChange}
                 required />
               <Form.Control.Feedback type="invalid">
                 Please choose a username.
@@ -57,13 +72,21 @@ class Login extends Component {
             </InputGroup>
           </Form.Group>
 
-          <Button variant="danger" type="submit">
+          <Button type="submit"
+            variant="danger"
+            disabled={isSubmitting} >
             Login
           </Button>
         </Form>
-      </div>
-    );
-  }
-}
+      )}
+    </Formik>
+  </div>
+);
 
-export default connect(null, null)(Login);
+Login.propTypes = {
+  email: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
+  onSubmit: PropTypes.func.isRequired
+};
+
+export default Login
