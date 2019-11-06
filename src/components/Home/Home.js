@@ -6,7 +6,7 @@ import {
   NavDropdown
 } from 'react-bootstrap';
 
-import Routes from "../RoutesDashboard";
+import Routes from "../../routes/RoutesDashboard";
 // import "./Home.css";
 
 export default function Home() {

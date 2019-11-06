@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 
-import logo from '../logo.png';
+import logo from '../../assets/logo.png';
 // import "./Home.css";
 
 class Login extends Component {

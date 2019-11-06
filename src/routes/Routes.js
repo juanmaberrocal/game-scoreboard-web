@@ -6,8 +6,8 @@ import {
 } from "react-router-dom";
 import { connect } from "react-redux";
 
-import Login from "./containers/Login";
-import Home from "./containers/Home";
+import Login from "../components/Login";
+import Home from "../components/Home";
 
 const Routes = (props) => {
   return (

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import Routes from "./Routes";
-import withSplashScreen from './components/withSplashScreen';
+import Routes from "../../routes/Routes";
+import withSplashScreen from '../SplashScreen';
 
 import './App.css';
 

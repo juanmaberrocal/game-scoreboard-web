@@ -4,10 +4,10 @@ import {
   Switch,
   useRouteMatch
 } from "react-router-dom";
-import Dashboard from "./containers/Dashboard";
-import Games from "./containers/Games";
-import Players from "./containers/Players";
-import NotFound from "./containers/NotFound";
+import Dashboard from "../components/Dashboard";
+import Games from "../components/Games";
+import Players from "../components/Players";
+import NotFound from "../components/NotFound";
 
 export default function Routes() {
   // The `path` lets us build <Route> paths that are
