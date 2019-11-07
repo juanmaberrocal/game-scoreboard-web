@@ -1,1 +1,1 @@
-export { default } from './Players.js';
+export { default } from './PlayersContainer.js';
