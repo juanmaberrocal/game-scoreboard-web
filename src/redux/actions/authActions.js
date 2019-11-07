@@ -1,24 +1,41 @@
 import Auth from '../../services/Auth';
 
-export const LOGIN_REQUEST = 'LOGIN_REQUEST'
-function loginRequest() {
+export const AUTH_REQUEST = 'AUTH_REQUEST'
+function authRequest() {
   return {
-    type: LOGIN_REQUEST
+    type: AUTH_REQUEST
   }
 }
 
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
-function loginSuccess(player) {
+export const AUTH_SUCCESS = 'AUTH_SUCCESS'
+function authSuccess(player) {
   return {
-    type: LOGIN_SUCCESS,
+    type: AUTH_SUCCESS,
     player
   }
 }
 
-export const LOGIN_FAIL = 'LOGIN_FAIL'
-function loginFail() {
+export const AUTH_FAIL = 'AUTH_FAIL'
+function authFail() {
   return {
-    type: LOGIN_FAIL
+    type: AUTH_FAIL
+  }
+}
+
+export const renew = () => {
+  return (dispatch) => {
+    dispatch(authRequest());
+
+    return Auth.renew()
+      .then((response) => {
+        if (response.success) {
+          dispatch(authSuccess(response.player));
+          return true;
+        } else {
+          dispatch(authFail);
+          return false;
+        }
+      })
   }
 }
 
@@ -26,7 +43,7 @@ export const login = (email, password) => {
   return (dispatch) => {
     // First dispatch: the app state is updated to inform
     // that the API call is starting.
-    dispatch(loginRequest());
+    dispatch(authRequest());
 
     // The function called by the thunk middleware can return a value,
     // that is passed on as the return value of the dispatch method.
@@ -36,10 +53,10 @@ export const login = (email, password) => {
     return Auth.login(email, password)
       .then((response) => {
         if (response.success) {
-          dispatch(loginSuccess(response.player));
+          dispatch(authSuccess(response.player));
           return true;
         } else {
-          dispatch(loginFail);
+          dispatch(authFail);
           return false;
         }
       });

@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
+
 import API from '../../services/Api';
+import { authActions } from '../../redux/actions'
 
 import logo from '../../assets/logo.png';
 import './splash-screen.css';
@@ -17,7 +20,7 @@ function LoadingMessage() {
   );
 }
 
-function withSplashScreen(WrappedComponent) {
+function SplashScreen(WrappedComponent) {
   return class extends Component {
     _retryDuration = 3000;
     _retryLimit = 5;
@@ -37,7 +40,10 @@ function withSplashScreen(WrappedComponent) {
     _loadApi() {
       API.get("ping")
         .then(response => {
-          this.setState({loading: false});
+          this.props.renew()
+            .then(() => {
+              this.setState({loading: false});
+            });
         })
         .catch(error => {
           if (this._retryCount < this._retryLimit) {
@@ -60,6 +66,16 @@ function withSplashScreen(WrappedComponent) {
       return <WrappedComponent {...this.props} />;
     }
   };
+}
+
+const mapDispatchToProps = (dispatch) => (
+  {
+    renew: () => (dispatch(authActions.renew()))
+  }
+);
+
+function withSplashScreen(WrappedComponent) {
+  return connect(null, mapDispatchToProps)(SplashScreen(WrappedComponent));
 }
 
 export default withSplashScreen;
