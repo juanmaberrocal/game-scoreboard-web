@@ -10,7 +10,7 @@ const DEFAULT = {
   player: undefined
 }
 
-const currentPlayer = (state = DEFAULT, action) => {
+const authReducer = (state = DEFAULT, action) => {
   switch (action.type) {
     case 'AUTH_REQUEST':
       return Object.assign({}, state, {
@@ -36,4 +36,4 @@ const currentPlayer = (state = DEFAULT, action) => {
   }
 }
 
-export default currentPlayer;
+export default authReducer;

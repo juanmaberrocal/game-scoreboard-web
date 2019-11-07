@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import currentPlayer from './currentPlayer'
+import authReducer from './authReducer'
 
 export default combineReducers({
-  currentPlayer
+  authReducer
 });

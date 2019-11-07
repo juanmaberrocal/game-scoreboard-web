@@ -41,7 +41,7 @@ const PrivateRoute = ({auth, ...rest}) => {
 
 const mapStateToProps = state => {
   return {
-    authorizationStatus: state.currentPlayer.status
+    authorizationStatus: state.authReducer.status
   };
 };
 export default connect(mapStateToProps)(Routes);
