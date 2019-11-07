@@ -6,8 +6,8 @@ const STATUS = {
 }
 
 const DEFAULT = {
-  player: undefined,
-  status: STATUS.Uninitialized
+  status: STATUS.Uninitialized,
+  player: undefined
 }
 
 const currentPlayer = (state = DEFAULT, action) => {
@@ -18,12 +18,13 @@ const currentPlayer = (state = DEFAULT, action) => {
       });
     case 'LOGIN_SUCCESS':
       return Object.assign({}, state, {
-        player: action.player,
-        status: STATUS.Authenticated
+        status: STATUS.Authenticated,
+        player: action.player
       });
     case 'LOGIN_FAIL':
       return Object.assign({}, state, {
-        status: STATUS.Unauthenticated
+        status: STATUS.Unauthenticated,
+        player: undefined
       });
     default:
       return state

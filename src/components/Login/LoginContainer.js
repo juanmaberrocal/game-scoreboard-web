@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 
+import { authActions } from '../../redux/actions'
 import Login from './LoginView'
 
 class LoginContainer extends Component {
@@ -15,10 +16,16 @@ class LoginContainer extends Component {
   }
 
   onSubmit = (values, { setSubmitting }) => {
-    setTimeout(() => {
-      alert(JSON.stringify(values, null, 2));
-      setSubmitting(false);
-    }, 400);
+    setSubmitting(true);
+
+    this.props.login(values.email, values.password)
+      .then((didLogin) => {
+        if (didLogin) {
+          this.props.history.push('/');
+        } else {
+          setSubmitting(false);
+        }
+      });
   }
 
   render () {
@@ -31,4 +38,10 @@ class LoginContainer extends Component {
   }
 }
 
-export default connect(null, null)(LoginContainer);
+const mapDispatchToProps = (dispatch) => (
+  {
+    login: (email, password) => (dispatch(authActions.login(email, password)))
+  }
+);
+
+export default connect(null, mapDispatchToProps)(LoginContainer);

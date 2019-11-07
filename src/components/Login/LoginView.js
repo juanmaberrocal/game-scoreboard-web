@@ -67,7 +67,7 @@ const Login = (props) => (
                 onChange={handleChange}
                 required />
               <Form.Control.Feedback type="invalid">
-                Please choose a username.
+                {errors.password}
               </Form.Control.Feedback>
             </InputGroup>
           </Form.Group>
