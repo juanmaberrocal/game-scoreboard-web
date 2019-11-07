@@ -38,6 +38,7 @@ function SplashScreenContainer(WrappedComponent) {
               if (didRenew) {
                 // load game and player data
                 this.props.fetchGames();
+                this.props.fetchPlayers();
               }
 
               this.setState({loading: false});

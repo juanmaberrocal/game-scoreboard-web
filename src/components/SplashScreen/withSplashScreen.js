@@ -2,7 +2,8 @@ import { connect } from 'react-redux';
 
 import {
   authActions,
-  gameActions
+  gameActions,
+  playerActions
 } from '../../redux/actions'
 import SplashScreen from './SplashScreenContainer'
 
@@ -19,7 +20,8 @@ function withSplashScreen(WrappedComponent) {
 const mapDispatchToProps = (dispatch) => (
   {
     renew: () => (dispatch(authActions.renew())),
-    fetchGames: () => (dispatch(gameActions.fetch()))
+    fetchGames: () => (dispatch(gameActions.fetch())),
+    fetchPlayers: () => (dispatch(playerActions.fetch()))
   }
 );
 
