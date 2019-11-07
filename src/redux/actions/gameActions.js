@@ -8,10 +8,11 @@ function fetchRequest() {
 }
 
 export const GAME_FETCH_SUCCESS = 'GAME_FETCH_SUCCESS'
-function fetchSuccess(player) {
+function fetchSuccess(games) {
+  console.log(games)
   return {
     type: GAME_FETCH_SUCCESS,
-    player
+    games
   }
 }
 
