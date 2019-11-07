@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 
-import { authActions } from '../../redux/actions'
+import {
+  authActions,
+  gameActions,
+  playerActions
+} from '../../redux/actions'
 import Login from './LoginView'
 
 class LoginContainer extends Component {
@@ -21,6 +25,11 @@ class LoginContainer extends Component {
     this.props.login(values.email, values.password)
       .then((didLogin) => {
         if (didLogin) {
+          // load game and player data
+          this.props.fetchGames();
+          this.props.fetchPlayers();
+
+          // navigate to dashboard
           this.props.history.push('/');
         } else {
           setSubmitting(false);
@@ -40,7 +49,9 @@ class LoginContainer extends Component {
 
 const mapDispatchToProps = (dispatch) => (
   {
-    login: (email, password) => (dispatch(authActions.login(email, password)))
+    login: (email, password) => (dispatch(authActions.login(email, password))),
+    fetchGames: () => (dispatch(gameActions.fetch())),
+    fetchPlayers: () => (dispatch(playerActions.fetch()))
   }
 );
 
