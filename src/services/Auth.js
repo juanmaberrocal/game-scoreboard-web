@@ -62,7 +62,7 @@ class Auth {
 
   static playerFromResponse(response) {
     const data = response.data.data;
-    const player = Object.assign({}, {id: data.id }, data.attributes);
+    const player = Object.assign({}, { id: data.id }, data.attributes);
     return player;
   }
 }
