@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faEnvelope,
-  faLock
+  faLock,
+  faUser
 } from '@fortawesome/free-solid-svg-icons'
 
 import Routes from "../../routes/Routes";
@@ -10,7 +11,7 @@ import withSplashScreen from '../SplashScreen';
 
 import './App.css';
 
-library.add(faEnvelope, faLock);
+library.add(faEnvelope, faLock, faUser);
 
 class App extends Component {
   render() {

@@ -8,7 +8,7 @@ class Auth {
     // if there is no stored player token
     // skip renew logic
     if (!StoredUser.getToken()) {
-      return { success: false };
+      return Promise.resolve().then(() => ({ success: false }));
     }
 
     return API.get(url)
@@ -38,6 +38,19 @@ class Auth {
       StoredUser.clearToken();
       return { success: false };
     });
+  }
+
+  static logout() {
+    const url = 'logout';
+
+    return API.delete(url)
+      .then((response) => {
+        StoredUser.clearToken();
+        return { success: true };
+      })
+      .catch((error) => {
+        return { success: false };
+      });
   }
 
   // helpers

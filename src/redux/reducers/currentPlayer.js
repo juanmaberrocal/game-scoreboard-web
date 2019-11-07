@@ -26,6 +26,11 @@ const currentPlayer = (state = DEFAULT, action) => {
         status: STATUS.Unauthenticated,
         player: undefined
       });
+    case 'AUTH_END':
+      return Object.assign({}, state, {
+        status: STATUS.Uninitialized,
+        player: undefined
+      });
     default:
       return state
   }

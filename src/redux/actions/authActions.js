@@ -22,6 +22,13 @@ function authFail() {
   }
 }
 
+export const AUTH_END = 'AUTH_END'
+function authEnd() {
+  return {
+    type: AUTH_END
+  }
+}
+
 export const renew = () => {
   return (dispatch) => {
     dispatch(authRequest());
@@ -32,7 +39,7 @@ export const renew = () => {
           dispatch(authSuccess(response.player));
           return true;
         } else {
-          dispatch(authFail);
+          dispatch(authFail());
           return false;
         }
       })
@@ -56,7 +63,23 @@ export const login = (email, password) => {
           dispatch(authSuccess(response.player));
           return true;
         } else {
-          dispatch(authFail);
+          dispatch(authFail());
+          return false;
+        }
+      });
+  }
+}
+
+export const logout = () => {
+  return (dispatch) => {
+    dispatch(authRequest());
+
+    return Auth.logout()
+      .then((response) => {
+        if (response.success) {
+          dispatch(authEnd());
+          return true;
+        } else {
           return false;
         }
       });
