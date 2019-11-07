@@ -3,6 +3,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import {
   faEnvelope,
   faLock,
+  faSpinner,
   faUser
 } from '@fortawesome/free-solid-svg-icons'
 
@@ -11,7 +12,7 @@ import withSplashScreen from '../SplashScreen';
 
 import './App.css';
 
-library.add(faEnvelope, faLock, faUser);
+library.add(faEnvelope, faLock, faSpinner, faUser);
 
 class App extends Component {
   render() {
