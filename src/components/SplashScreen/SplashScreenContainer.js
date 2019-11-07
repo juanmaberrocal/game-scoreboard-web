@@ -20,11 +20,26 @@ function SplashScreenContainer(WrappedComponent) {
       this._loadApi();
     }
 
+    /*
+     API load is required to wake up the backend server
+     Will ping the server 5 times before throwing an error
+     After ensuring that the API is awake it has to check
+     if a user was previously logged in.
+     If the user was logged in load the remaining necessary
+     data
+     */
     _loadApi() {
       API.get("ping")
         .then(response => {
+          // API is awake
           this.props.renew()
-            .then(() => {
+            .then((didRenew) => {
+              // user was previously logged in
+              if (didRenew) {
+                // load game and player data
+                this.props.fetchGames();
+              }
+
               this.setState({loading: false});
             });
         })
