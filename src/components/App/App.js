@@ -4,6 +4,7 @@ import {
   faEnvelope,
   faLock,
   faSpinner,
+  faStar,
   faUser
 } from '@fortawesome/free-solid-svg-icons'
 
@@ -12,7 +13,7 @@ import withSplashScreen from '../SplashScreen';
 
 import './App.css';
 
-library.add(faEnvelope, faLock, faSpinner, faUser);
+library.add(faEnvelope, faLock, faSpinner, faStar, faUser);
 
 class App extends Component {
   render() {

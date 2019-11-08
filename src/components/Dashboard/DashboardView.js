@@ -4,9 +4,9 @@ import {
   Row,
   Col
 } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import GamesPlayedCard from './GamesPlayedCard';
+import LastMatchesList from './LastMatchesList';
 import WinPercentageCard from './WinPercentageCard';
 import WinPieChart from './WinPieChart';
 
@@ -21,6 +21,10 @@ const Dashboard = (props) => (
           </Col>
           <Col xs={6} sm={6} md={12} lg={12} xl={12}>
             <WinPercentageCard matches={props.matches} />
+          </Col>
+          <Col xs={12} sm={12} md={12} lg={12} xl={12}>
+            <LastMatchesList matches={props.matches}
+              games={props.games} />
           </Col>
         </Row>
       </Col>
