@@ -27,6 +27,7 @@ class DashboardContainer extends Component {
     return (
       <Dashboard
         player={this.props.player}
+        games={this.props.games}
         matches={this.state.matches} />
     );
   }
@@ -34,7 +35,8 @@ class DashboardContainer extends Component {
 
 const mapStateToProps = state => {
   return {
-    player: state.authReducer.player
+    player: state.authReducer.player,
+    games: state.gameReducer.games
   };
 };
 
