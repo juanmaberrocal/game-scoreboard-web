@@ -1,0 +1,8 @@
+.NavBar .NavLinks.active {
+  top: 4rem;
+}
+
+.NavBar .NavLinks .NavLink.active {
+  border-color: #63b3ed;
+  background-color: #1a202c;
+}

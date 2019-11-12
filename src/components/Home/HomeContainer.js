@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { authActions } from '../../redux/actions'
-import Home from "./HomeView.js";
+import Home from "./HomeView";
 
 class HomeContainer extends Component {
   constructor(props) {
