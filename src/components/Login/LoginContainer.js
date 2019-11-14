@@ -34,6 +34,7 @@ class LoginContainer extends Component {
           this.props.history.push('/');
         } else {
           this.props.openAlert({
+            type: 'error',
             header: 'Login Error',
             body: 'Please verify your username and password!'
           });

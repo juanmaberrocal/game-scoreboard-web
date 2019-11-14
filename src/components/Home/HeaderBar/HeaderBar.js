@@ -15,9 +15,10 @@ const HeaderBar = (props) => {
     }
   };
   const logOutModalProps = {
+    type: 'warning',
     header: 'Log Out',
-    body: <div>Are you sure you want to log out?</div>,
-    onClose: onLogout
+    body: 'Are you sure you want to log out?',
+    onContinue: onLogout
   };
 
   return (

@@ -10,7 +10,7 @@ import {
 
 import Routes from "../../routes/Routes";
 import withSplashScreen from '../SplashScreen';
-import Modal from '../Modal'
+import Modal from '../Modal';
 
 library.add(faEnvelope, faLock, faSpinner, faStar, faUser);
 
