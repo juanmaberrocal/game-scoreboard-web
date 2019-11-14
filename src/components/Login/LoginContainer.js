@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import {
   authActions,
   gameActions,
-  playerActions
+  playerActions,
+  modalActions
 } from '../../redux/actions'
 import Login from './LoginView'
 
@@ -32,6 +33,12 @@ class LoginContainer extends Component {
           // navigate to dashboard
           this.props.history.push('/');
         } else {
+          this.props.openAlert({
+            type: 'error',
+            header: 'Login Error',
+            body: 'Please verify your username and password!'
+          });
+
           setSubmitting(false);
         }
       });
@@ -51,7 +58,8 @@ const mapDispatchToProps = (dispatch) => (
   {
     login: (email, password) => (dispatch(authActions.login(email, password))),
     fetchGames: () => (dispatch(gameActions.fetch())),
-    fetchPlayers: () => (dispatch(playerActions.fetch()))
+    fetchPlayers: () => (dispatch(playerActions.fetch())),
+    openAlert: (props) => (dispatch(modalActions.open(props))),
   }
 );
 

@@ -4,8 +4,12 @@ import logo from '../../assets/logo.png';
 import './SplashScreen.css';
 
 const SplashScreen = () => (
-  <div className="splash-screen d-flex flex-column align-items-center justify-content-center">
-    <div className="flex-grow-1 d-flex flex-column align-items-center justify-content-center">
+  <div className="splash-screen
+    flex flex-col items-center justify-center
+  ">
+    <div className="
+      flex flex-grow flex-col items-center justify-center
+    ">
       <img src={logo} className="logo" alt="logo" />
       <div className="title">Game Scoreboard</div>
     </div>

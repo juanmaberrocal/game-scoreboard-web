@@ -10,8 +10,7 @@ import {
 
 import Routes from "../../routes/Routes";
 import withSplashScreen from '../SplashScreen';
-
-import './App.css';
+import Modal from '../Modal';
 
 library.add(faEnvelope, faLock, faSpinner, faStar, faUser);
 
@@ -20,6 +19,7 @@ class App extends Component {
     return (
       <div className="App">
         <Routes />
+        <Modal />
       </div>
     );
   }
