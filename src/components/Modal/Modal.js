@@ -22,12 +22,12 @@ const Modal = (props) => {
       <div className="
         flex flex-col
         max-w-3/4 max-h-3/4
-        pt-6 pb-3 px-24
+        p-3 md:py-6 md:px-24
         overflow-y-auto
         bg-white rounded z-10 shadow
         text-center
       ">
-        <div className="p-2 text-4xl">
+        <div className="pb-2 text-4xl">
           {
             props.modalProps.type === "success" ? (
               <IconCheckCircle className="
@@ -57,12 +57,18 @@ const Modal = (props) => {
           }
           <h1>{props.modalProps.header}</h1>
         </div>
-        <div className="flex-grow p-3">{props.modalProps.body}</div>
-        <div className="flex-initial flex flex-row-reverse justify-around p-2">
+        <div className="flex-grow py-3">{props.modalProps.body}</div>
+        <div className="
+          flex flex-initial flex-row-reverse justify-around
+          flex-wrap md:flex-no-wrap
+          pt-2
+        ">
           {
             props.modalProps.onContinue ? (
               <button className="
-                py-1 px-12 border rounded-full
+                py-1 px-12
+                mb-3 md:mb-0
+                border rounded-full
                 bg-green-400 border-green-400
                 hover:bg-green-700 hover:border-green-700
                 text-white
@@ -72,7 +78,8 @@ const Modal = (props) => {
             )
           }
           <button className="
-            py-1 px-12 border rounded-full
+            py-1 px-12
+            border rounded-full
             bg-gray-400 border-gray-400
             hover:bg-gray-700 hover:border-gray-700
             text-gray-700 hover:text-gray-900
