@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import Routes from "../../routes/RoutesDashboard";
+import HeaderBar from './HeaderBar/'
 import NavBar from './NavBar/'
 
 const Home = (props) => (
@@ -13,7 +14,7 @@ const Home = (props) => (
       h-16 md:h-screen
       overflow-y-visible md:overflow-y-auto
     ">
-      <NavBar player={props.player} />
+      <NavBar />
     </div>
     <div className="
       w-full md:w-5/6
@@ -21,6 +22,7 @@ const Home = (props) => (
       overflow-y-auto
       bg-gray-300
     ">
+      <HeaderBar onLogout={props.onLogout} />
       <Routes />
     </div>
   </div>
