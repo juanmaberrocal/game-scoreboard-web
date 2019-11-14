@@ -33,7 +33,7 @@ const HeaderBar = (props) => {
         mt-4 md:mt-0
       ">
         <NavLink className="flex flex-col items-center text-center" to="/matches/new">
-          <IconPlusCircle className="fill-current" />
+          <IconPlusCircle className="h-8 w-8 fill-current" viewBox="0 0 24 24" />
           <div className="text-xs">Add Result</div>
         </NavLink>
       </div>

@@ -21,29 +21,38 @@ const buildPieLabels = (pieData, gamesData) => {
   });
 }
 
-const WinPercentageCard = (props) => {
+const WinPieChart = (props) => {
   const matchesWon = props.matches.filter((match) => (match.winner));
   const pieData = buildPieData(matchesWon);
   const pieLabels = buildPieLabels(pieData, props.games);
   const pieSeries = Object.values(pieData);
   const options= {
-    chart: {
-      id: "basic-bar"
-    },
     labels: pieLabels
   };
   const series = pieSeries;
 
   return (
-    <Chart type="pie"
-      options={options}
-      series={series} />
+    <div className="WinPieChart
+      flex flex-col
+      w-full md:w-3/5
+      h-full
+      pb-3
+    ">
+      <h3 className="w-full flex-grow-0 text-sm font-medium">Win Breakdown</h3>
+      <div className="w-full border bg-white rounded shadow flex-grow">
+        <Chart className="absolute inset-0 flex items-center"
+          type="pie"
+          height='100%'
+          options={options}
+          series={series} />
+      </div>
+    </div>
   );
 };
 
-WinPercentageCard.propTypes = {
+WinPieChart.propTypes = {
   games: PropTypes.array.isRequired,
   matches: PropTypes.array.isRequired
 };
 
-export default WinPercentageCard;
+export default WinPieChart
