@@ -9,7 +9,7 @@ import './NavBar.css';
 const NavBar = (props) => {
   return (
     <nav className="NavBar
-      flex flew-row md:flex-col items-start md:items-center
+      flex flew-row md:flex-col items-stretch md:items-center
       h-full
       bg-gray-700 text-gray-400
     ">

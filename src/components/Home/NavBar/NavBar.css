@@ -5,4 +5,5 @@
 .NavBar .NavLinks .NavLink.active {
   border-color: #63b3ed;
   background-color: #1a202c;
+  color: #edf2f7;
 }
