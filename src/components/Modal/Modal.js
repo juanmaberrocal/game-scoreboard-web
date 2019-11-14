@@ -69,9 +69,9 @@ const Modal = (props) => {
                 py-1 px-12
                 mb-3 md:mb-0
                 border rounded-full
-                bg-green-400 border-green-400
+                bg-green-500 border-green-500
                 hover:bg-green-700 hover:border-green-700
-                text-white
+                text-gray-200
               " onClick={props.modalProps.onContinue}>Continue</button>
             ) : (
               null
@@ -82,7 +82,7 @@ const Modal = (props) => {
             border rounded-full
             bg-gray-400 border-gray-400
             hover:bg-gray-700 hover:border-gray-700
-            text-gray-700 hover:text-gray-900
+            text-gray-700 hover:text-gray-200
           " onClick={() => {props.close()}}>Close</button>
         </div>
       </div>

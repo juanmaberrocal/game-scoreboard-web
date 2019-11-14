@@ -33,7 +33,7 @@ const HeaderBar = (props) => {
         border rounded border-gray-700
         px-2 py-1
         text-gray-900 text-sm font-medium
-        hover:text-gray-400 hover:bg-gray-700
+        hover:text-gray-200 hover:bg-gray-700
       " onClick={() => {props.openLogout(logOutModalProps)}} >
         Log Out
       </button>
