@@ -9,18 +9,19 @@ const HeaderBar = (props) => {
   const avatarSource = props.player.avatar ? props.player.avatar : noAvatar;
 
   return (
-    <header className="flex flex-row items-center justify-between
-      h-32 w-full
-      px-16 py-2
+    <header className="HeaderBar
+      flex flex-col md:flex-row items-start md:items-center justify-between
+      h-auto md:h-32 w-full
+      py-2 px-3 md:px-16 md:py-2
       bg-white
       shadow
     ">
-      <div className="HeaderBar
+      <div className="
         flex flex-row flex-no-wrap items-center
-        w-4/5
+        w-full md:w-4/5
       ">
-        <img className="h-16 rounded-full" src={avatarSource} alt="avatar" />
-        <div className="flex flex-col ml-6">
+        <img className="h-16 rounded-full hidden md:block mr-6" src={avatarSource} alt="avatar" />
+        <div className="flex flex-col">
           <h1 className="text-lg">Welcome, {props.player.first_name} {props.player.last_name}</h1>
           <div className="text-xs">
             Role: {props.player.role}
@@ -28,9 +29,10 @@ const HeaderBar = (props) => {
         </div>
       </div>
       <div className="
-        flex flex-row-reverse flex-no-wrap
+        flex flex-row md:flex-row-reverse flex-no-wrap
+        mt-4 md:mt-0
       ">
-        <NavLink className="flex flex-col items-center" to="/matches/new">
+        <NavLink className="flex flex-col items-center text-center" to="/matches/new">
           <IconPlusCircle className="fill-current" />
           <div className="text-xs">Add Result</div>
         </NavLink>

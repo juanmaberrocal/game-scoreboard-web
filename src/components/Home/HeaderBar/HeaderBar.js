@@ -25,7 +25,7 @@ const HeaderBar = (props) => {
     <header className="HeaderBar
       flex flex-row-reverse items-center
       h-16 w-full
-      px-16 py-2
+      py-2 px-3 md:px-16 md:py-2
       bg-white
       shadow
     ">
