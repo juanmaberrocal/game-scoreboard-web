@@ -1,7 +1,6 @@
 import React from "react";
 
 const NavPercentage = (props) => {
-  
   return (
     <div className="
       flex flex-col items-center md:items-start
@@ -14,7 +13,7 @@ const NavPercentage = (props) => {
     ">
       <div className="text-sm hidden md:flex w-full">Win Percentage</div>
       <div className="my-auto text-gray-200">
-        57.69%
+        N/A
       </div>
     </div>
   );
