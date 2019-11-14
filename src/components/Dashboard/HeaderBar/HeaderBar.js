@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 
 import IconPlusCircle from '../../Icons/IconPlusCircle';
-import noAvatar from '../../../assets/undraw_male_avatar_323b.png';
+import noAvatar from '../../../assets/no-avatar-player.png';
 
 const HeaderBar = (props) => {
   const avatarSource = props.player.avatar ? props.player.avatar : noAvatar;

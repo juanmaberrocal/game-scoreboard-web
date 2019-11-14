@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import noAvatar from '../../../assets/undraw_male_avatar_323b.png';
+import noAvatar from '../../../assets/no-avatar-player.png';
 
 const NavName = (props) => {
   const avatarSource = props.player.avatar ? props.player.avatar : noAvatar;
@@ -15,7 +15,7 @@ const NavName = (props) => {
       bg-gray-900
     ">
       <div className="w-1/4 md:w-1/3">
-        <img className="h-8 mx-auto" src={avatarSource} />
+        <img className="h-8 mx-auto" src={avatarSource} alt="avatar" />
       </div>
       <div className="w-3/4 overflow-hidden truncate text-left">
         {props.player.nickname}
