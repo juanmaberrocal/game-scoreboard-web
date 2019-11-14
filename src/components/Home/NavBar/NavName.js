@@ -15,7 +15,7 @@ const NavName = (props) => {
       bg-gray-900
     ">
       <div className="w-1/4 md:w-1/3">
-        <img className="h-8 mx-auto" src={avatarSource} alt="avatar" />
+        <img className="h-8 rounded-full mx-auto" src={avatarSource} alt="avatar" />
       </div>
       <div className="w-3/4 overflow-hidden truncate text-left">
         {props.player.nickname}

@@ -19,7 +19,7 @@ const HeaderBar = (props) => {
         flex flex-row flex-no-wrap items-center
         w-4/5
       ">
-        <img className="h-16" src={avatarSource} alt="avatar" />
+        <img className="h-16 rounded-full" src={avatarSource} alt="avatar" />
         <div className="flex flex-col ml-6">
           <h1 className="text-lg">Welcome, {props.player.first_name} {props.player.last_name}</h1>
           <div className="text-xs">
