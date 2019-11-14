@@ -11,6 +11,12 @@
  */
 @tailwind base;
 
+body {
+  @apply text-gray-700;
+}
+
+
+
 /**
  * This injects any component classes registered by plugins.
  *
