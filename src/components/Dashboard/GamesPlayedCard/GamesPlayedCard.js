@@ -12,8 +12,8 @@ const GamesPlayedCard = (props) => {
       pr-1 md:px-0 md:pb-3
     ">
       <h3 className="w-full flex-grow-0 text-sm font-medium">Games Played</h3>
-      <div className="w-full border bg-white rounded shadow flex-grow">
-        {matchesPlayed}
+      <div className="w-full border bg-white rounded shadow flex flex-grow items-center justify-center">
+        <div className="text-6xl m-auto">{matchesPlayed}</div>
       </div>
     </div>
   );
