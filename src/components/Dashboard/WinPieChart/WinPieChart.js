@@ -27,7 +27,10 @@ const WinPieChart = (props) => {
   const pieLabels = buildPieLabels(pieData, props.games);
   const pieSeries = Object.values(pieData);
   const options= {
-    labels: pieLabels
+    labels: pieLabels,
+    legend: {
+      position: "bottom"
+    }
   };
   const series = pieSeries;
 
