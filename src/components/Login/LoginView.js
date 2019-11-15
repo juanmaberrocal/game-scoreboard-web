@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Formik } from 'formik';
+import { NavLink } from "react-router-dom";
 
 import LoginSchema from './LoginSchema';
 import logo from '../../assets/logo.png';
@@ -47,10 +48,10 @@ const Login = (props) => (
                   text-red-500 text-xs italic mt-3
                 `}>{errors.email}</p>
             </div>
-            <div className="mb-6">
+            <div className="mb-4">
               <input type="password" id="password" placeholder="Password" required
                 className="
-                  shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 leading-tight 
+                  shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight 
                   focus:outline-none focus:shadow-outline
                 " value={values.password} onChange={handleChange} onBlur={handleBlur} />
                 <p className={`
@@ -58,17 +59,25 @@ const Login = (props) => (
                   text-red-500 text-xs italic mt-3
                 `}>{errors.password}</p>
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center mt-2">
               <button className="
                 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded
                 focus:outline-none focus:shadow-outline
               " disabled={isSubmitting} type="submit">
-                Login
+                Log In
               </button>
             </div>
           </form>
         )}
       </Formik>
+      <div className="flex flex-row flex-no-wrap items-center w-full py-3">
+        <hr className="flex-grow bt-1" />
+        <span className="flex-grow-0 px-3">OR</span>
+        <hr className="flex-grow bt-1" />
+      </div>
+      <div className="w-full text-center">
+        <NavLink to="/signup">Sign Up</NavLink>
+      </div>
     </div>
   </div>
 );

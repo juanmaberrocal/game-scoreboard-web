@@ -7,12 +7,14 @@ import {
 import { connect } from "react-redux";
 
 import Login from "../components/Login";
+import Signup from "../components/Signup";
 import Home from "../components/Home";
 
 const Routes = (props) => {
   return (
     <Switch>
       <Route path="/login" exact component={Login} />
+      <Route path="/signup" exact component={Signup} />
       <PrivateRoute auth={props.authorizationStatus} path="/" component={Home} />
     </Switch>
   );
