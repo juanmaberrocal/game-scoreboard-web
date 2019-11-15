@@ -37,9 +37,9 @@ const WinPieChart = (props) => {
   return (
     <div className="WinPieChart
       flex flex-col
-      w-full md:w-3/5
+      w-full md:w-4/5
       h-64 md:h-full
-      pb-3 mt-3 md:mt-0
+      pl-0 md:pl-3 pb-3 mt-3 md:mt-0
     ">
       <h3 className="w-full flex-grow-0 text-sm font-medium">Win Breakdown</h3>
       <div className="w-full border bg-white rounded shadow flex-grow">
