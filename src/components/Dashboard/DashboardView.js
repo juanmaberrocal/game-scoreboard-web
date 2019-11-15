@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import HeaderBar from './HeaderBar';
 import GamesPlayedCard from './GamesPlayedCard';
+import LastMatchesList from './LastMatchesList';
 import WinPercentageCard from './WinPercentageCard';
 import WinPieChart from './WinPieChart';
 
@@ -28,9 +29,12 @@ const Dashboard = (props) => {
           <WinPercentageCard matches={props.matches} />
           <WinPieChart games={props.games} matches={props.matches} />
         </div>
-        <div className="hidden
-          w-full border bg-white rounded shadow
-        "> FOOTER </div>
+        <div className="
+          flex flex-col flex-no-wrap
+          w-full h-auto
+        ">
+          <LastMatchesList games={props.games} matches={props.matches} />
+        </div>
       </div>
     </div>
   );
