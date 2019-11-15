@@ -7,12 +7,12 @@ import logo from '../../assets/logo.png';
 
 const Login = (props) => (
   <div className="Login
-    flex flex-column items-center justify-center
+    flex flex-col items-center justify-center
     h-screen w-full overflow-y-auto
     bg-gray-700
   ">
     <div className="
-      flex flex-column items-center justify-center
+      flex flex-col items-center justify-center
       p-6 m-6
       bg-white rounded shadow-xl
     ">
