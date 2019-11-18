@@ -35,7 +35,7 @@ class LoginContainer extends Component {
         } else {
           this.props.openAlert({
             type: 'error',
-            header: 'Login Error',
+            header: 'Log In Error',
             body: 'Please verify your username and password!'
           });
 

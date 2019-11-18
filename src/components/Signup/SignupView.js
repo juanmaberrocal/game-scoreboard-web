@@ -135,9 +135,9 @@ const Signup = (props) => (
 
 Signup.propTypes = {
   email: PropTypes.string.isRequired,
-  nickname: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
   password_confirmation: PropTypes.string.isRequired,
+  nickname: PropTypes.string.isRequired,
   first_name: PropTypes.string.isRequired,
   last_name: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired

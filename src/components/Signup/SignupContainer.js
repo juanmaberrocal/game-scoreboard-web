@@ -14,9 +14,9 @@ class SignupContainer extends Component {
     super(props);
     this.state = {
       email: "",
-      nickname: "",
       password: "",
       password_confirmation: "",
+      nickname: "",
       first_name: "",
       last_name: ""
     };
@@ -27,34 +27,40 @@ class SignupContainer extends Component {
   onSubmit = (values, { setSubmitting }) => {
     setSubmitting(true);
 
-    this.props.login(values.email, values.password)
-      .then((didLogin) => {
-        if (didLogin) {
-          // load game and player data
-          this.props.fetchGames();
-          this.props.fetchPlayers();
+    this.props.signup(
+      values.email,
+      values.password,
+      values.password_confirmation,
+      values.nickname,
+      values.first_name,
+      values.last_name
+    ).then((didSignup) => {
+      if (didSignup) {
+        // load game and player data
+        this.props.fetchGames();
+        this.props.fetchPlayers();
 
-          // navigate to dashboard
-          this.props.history.push('/');
-        } else {
-          this.props.openAlert({
-            type: 'error',
-            header: 'Login Error',
-            body: 'Please verify your username and password!'
-          });
+        // navigate to dashboard
+        this.props.history.push('/');
+      } else {
+        this.props.openAlert({
+          type: 'error',
+          header: 'Sign Up Error',
+          body: 'Please verify your new user information!'
+        });
 
-          setSubmitting(false);
-        }
-      });
+        setSubmitting(false);
+      }
+    });
   }
 
   render () {
     return (
       <Signup
         email={this.state.email}
-        nickname={this.state.nickname}
         password={this.state.password}
         password_confirmation={this.state.password_confirmation}
+        nickname={this.state.nickname}
         first_name={this.state.first_name}
         last_name={this.state.last_name}
         onSubmit={this.onSubmit} />
@@ -64,7 +70,8 @@ class SignupContainer extends Component {
 
 const mapDispatchToProps = (dispatch) => (
   {
-    login: (email, password) => (dispatch(authActions.login(email, password))),
+    signup: (email, password, password_confirmation, nickname, first_name, last_name) =>
+      (dispatch(authActions.signup(email, password, password_confirmation, nickname, first_name, last_name))),
     fetchGames: () => (dispatch(gameActions.fetch())),
     fetchPlayers: () => (dispatch(playerActions.fetch())),
     openAlert: (props) => (dispatch(modalActions.open(props))),

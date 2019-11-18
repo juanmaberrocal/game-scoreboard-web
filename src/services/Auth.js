@@ -22,6 +22,28 @@ class Auth {
       });
   }
 
+  static signup(email, password, password_confirmation, nickname, first_name, last_name) {
+    const url = 'signup';
+
+    return API.post(url, {
+      player: {
+        email: email,
+        password: password,
+        password_confirmation: password_confirmation,
+        nickname: nickname,
+        first_name: first_name,
+        last_name: last_name
+      }
+    }).then((response) => {
+      StoredUser.setToken(this.tokenFromResponse(response));
+      return { success: true, player: this.playerFromResponse(response) };
+    })
+    .catch((error) => {
+      StoredUser.clearToken();
+      return { success: false };
+    });
+  }
+
   static login(email, password) {
     const url = 'login';
 

@@ -46,6 +46,30 @@ export const renew = () => {
   }
 }
 
+export const signup = (email, password, password_confirmation, nickname, first_name, last_name) => {
+  return (dispatch) => {
+    // First dispatch: the app state is updated to inform
+    // that the API call is starting.
+    dispatch(authRequest());
+
+    // The function called by the thunk middleware can return a value,
+    // that is passed on as the return value of the dispatch method.
+
+    // In this case, we return a promise to wait for.
+    // This is not required by thunk middleware, but it is convenient for us.
+    return Auth.signup(email, password, password_confirmation, nickname, first_name, last_name)
+      .then((response) => {
+        if (response.success) {
+          dispatch(authSuccess(response.player));
+          return true;
+        } else {
+          dispatch(authFail());
+          return false;
+        }
+      });
+  }
+}
+
 export const login = (email, password) => {
   return (dispatch) => {
     // First dispatch: the app state is updated to inform
