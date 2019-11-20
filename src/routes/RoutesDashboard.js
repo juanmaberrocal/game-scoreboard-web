@@ -7,6 +7,7 @@ import {
 import Dashboard from "../components/Dashboard";
 import Games from "../components/Games";
 import Players from "../components/Players";
+import Player from "../components/Player";
 import NotFound from "../components/NotFound";
 
 export default function Routes() {
@@ -19,6 +20,8 @@ export default function Routes() {
     <Switch>
       <Route path={path} exact component={Dashboard} />
       <Route path={`${path}games`} component={Games} />
+
+      <Route path={`${path}players/:playerId`} component={Player} />
       <Route path={`${path}players`} component={Players} />
       { /* Finally, catch all unmatched routes */ }
       <Route component={NotFound} />

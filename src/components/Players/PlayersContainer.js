@@ -5,9 +5,10 @@ import Players from './PlayersView'
 
 class PlayersContainer extends Component {
   render () {
+    if (this.props.loading) return (<div>LOADING</div>);
+    
     return (
       <Players
-        isFetching={this.props.isFetching}
         players={this.props.players} />
     );
   }
