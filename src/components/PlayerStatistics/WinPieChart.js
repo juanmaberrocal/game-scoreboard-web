@@ -1,29 +1,26 @@
 import React from "react";
+import { connect } from 'react-redux';
 import PropTypes from "prop-types";
+
 import Chart from "react-apexcharts";
 
-const buildPieData = (matches) => {
+const buildPieData = (breakdown) => {
   let pieData = {};
-  matches.forEach((match) => {
-    if (!pieData.hasOwnProperty(match.game_id)) {
-      pieData[match.game_id] = 0;
-    }
-
-    pieData[match.game_id]++;
+  Object.entries(breakdown).forEach(([gameId, gameBreakdown]) => {
+    pieData[gameId] = gameBreakdown.won;
   });
   return pieData;
 }
 
 const buildPieLabels = (pieData, gamesData) => {
   return Object.keys(pieData).map((gameId) => {
-    const gameData = gamesData.find((game) => (game.id === gameId));
+    const gameData = gamesData.find((game) => (game.id === parseInt(gameId, 10)));
     return gameData ? gameData.name : ''; // since games are loaded thru redux might not be ready
   });
 }
 
 const WinPieChart = (props) => {
-  const matchesWon = props.matches.filter((match) => (match.winner));
-  const pieData = buildPieData(matchesWon);
+  const pieData = buildPieData(props.breakdown);
   const pieLabels = buildPieLabels(pieData, props.games);
   const pieSeries = Object.values(pieData);
   const options= {
@@ -53,9 +50,15 @@ const WinPieChart = (props) => {
   );
 };
 
-WinPieChart.propTypes = {
-  games: PropTypes.array.isRequired,
-  matches: PropTypes.array.isRequired
+
+const mapStateToProps = state => {
+  return {
+    games: state.gameReducer.games
+  };
 };
 
-export default WinPieChart
+WinPieChart.propTypes = {
+  breakdown: PropTypes.object.isRequired
+};
+
+export default connect(mapStateToProps)(WinPieChart);
