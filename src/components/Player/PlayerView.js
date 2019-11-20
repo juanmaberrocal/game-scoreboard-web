@@ -24,7 +24,7 @@ const Player = (props) => {
           relative
         ">
           <div className="w-full absolute AvatarContainer">
-            <img className="h-24 rounded-full mx-auto" src={avatarSource} alt="avatar" />
+            <img className="h-24 w-24 rounded-full mx-auto" src={avatarSource} alt="avatar" />
           </div>
           <div className="
             w-full

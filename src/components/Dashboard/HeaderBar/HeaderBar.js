@@ -6,7 +6,7 @@ import IconPlusCircle from '../../Icons/IconPlusCircle';
 import noAvatar from '../../../assets/no-avatar-player.png';
 
 const HeaderBar = (props) => {
-  const avatarSource = props.player.avatar ? props.player.avatar : noAvatar;
+  const avatarSource = props.player.avatar_url ? props.player.avatar_url : noAvatar;
 
   return (
     <header className="HeaderBar
@@ -20,7 +20,7 @@ const HeaderBar = (props) => {
         flex flex-row flex-no-wrap items-center
         w-full md:w-4/5
       ">
-        <img className="h-16 rounded-full hidden md:block mr-6" src={avatarSource} alt="avatar" />
+        <img className="h-16 w-16 rounded-full hidden md:block mr-6" src={avatarSource} alt="avatar" />
         <div className="flex flex-col">
           <h1 className="text-lg">Welcome, {props.player.first_name} {props.player.last_name}</h1>
           <div className="text-xs">
