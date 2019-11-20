@@ -22,7 +22,7 @@ const Players = (props) => (
             bg-white border rounded shadow
           ">
             <div className="w-1/4 md:w-1/3">
-              <img className="h-8 rounded-full mx-auto" src={player.avatar_url ? player.avatar_url : noAvatar} alt="avatar" />
+              <img className="h-8 w-8 rounded-full mx-auto" src={player.avatar_url ? player.avatar_url : noAvatar} alt="avatar" />
             </div>
             <div className="w-3/4 overflow-hidden truncate text-left">
               {player.nickname}

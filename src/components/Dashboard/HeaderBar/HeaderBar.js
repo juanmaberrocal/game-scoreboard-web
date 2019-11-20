@@ -6,7 +6,7 @@ import IconPlusCircle from '../../Icons/IconPlusCircle';
 import noAvatar from '../../../assets/no-avatar-player.png';
 
 const HeaderBar = (props) => {
-  const avatarSource = props.player.avatar ? props.player.avatar : noAvatar;
+  const avatarSource = props.player.avatar_url ? props.player.avatar_url : noAvatar;
 
   return (
     <header className="HeaderBar
