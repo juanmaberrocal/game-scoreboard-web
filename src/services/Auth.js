@@ -1,4 +1,5 @@
 import API from './Api';
+import Player from './Player'
 import StoredUser from './StoredUser'
 
 class Auth {
@@ -84,7 +85,7 @@ class Auth {
 
   static playerFromResponse(response) {
     const data = response.data.data;
-    const player = Object.assign({}, { id: data.id }, data.attributes);
+    const player = new Player(data.id, data.attributes);
     return player;
   }
 }
