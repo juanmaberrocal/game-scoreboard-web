@@ -4,7 +4,6 @@ import {
   Row,
   Col
 } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import GameCard from "./GameCard"
 
@@ -12,7 +11,7 @@ const Games = (props) => (
   <div className="Games">
     <h3>Games</h3>
     {props.isFetching ? (
-      <FontAwesomeIcon icon="spinner" size="6x" spin />
+      <div>LOADING</div>
     ) : (
       <Row>
         {props.games.map((game, key) =>
