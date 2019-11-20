@@ -13,6 +13,12 @@ const NavLink = (props) => {
     { className: "mx-auto fill-current" }
   );
 
+  const checkActive = (match, location) => {
+    if (match === null) return false;
+    if (match.url === "" && location.pathname !== "/") return false;
+    return true;
+  }
+
   return (
     <Link className="NavLink
       flex
@@ -22,7 +28,9 @@ const NavLink = (props) => {
       hover:no-underline
       hover:bg-gray-900
       hover:text-white
-    " to={props.path}>
+    "
+    to={props.path}
+    isActive={checkActive} >
       <span className="w-1/4">
         {Icon}
       </span>

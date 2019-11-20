@@ -2,9 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import HeaderBar from './HeaderBar';
-import GamesPlayedCard from './GamesPlayedCard';
-import WinPercentageCard from './WinPercentageCard';
-import WinPieChart from './WinPieChart';
+import LastMatchesList from './LastMatchesList';
+import PlayerStatistics from '../PlayerStatistics';
 
 const Dashboard = (props) => {
   return (
@@ -20,17 +19,15 @@ const Dashboard = (props) => {
         <div className="hidden
           w-full border bg-white rounded shadow mb-3
         ">HEADER</div>
+        <PlayerStatistics
+          player={props.player}
+          layout="cols" />
         <div className="
-          flex flex-row md:flex-col flex-wrap
-          h-auto md:h-screen
+          flex flex-col flex-no-wrap
+          w-full h-auto
         ">
-          <GamesPlayedCard matches={props.matches} />
-          <WinPercentageCard matches={props.matches} />
-          <WinPieChart games={props.games} matches={props.matches} />
+          <LastMatchesList games={props.games} matches={props.matches} />
         </div>
-        <div className="hidden
-          w-full border bg-white rounded shadow
-        "> FOOTER </div>
       </div>
     </div>
   );

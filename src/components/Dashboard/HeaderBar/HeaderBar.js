@@ -24,7 +24,7 @@ const HeaderBar = (props) => {
         <div className="flex flex-col">
           <h1 className="text-lg">Welcome, {props.player.first_name} {props.player.last_name}</h1>
           <div className="text-xs">
-            Role: {props.player.role}
+            Role: <span className="capitalize">{props.player.role}</span>
           </div>
         </div>
       </div>

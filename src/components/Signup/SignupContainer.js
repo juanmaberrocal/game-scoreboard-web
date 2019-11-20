@@ -1,0 +1,81 @@
+import React, { Component } from "react";
+import { connect } from 'react-redux';
+
+import {
+  authActions,
+  gameActions,
+  playerActions,
+  modalActions
+} from '../../redux/actions'
+import Signup from './SignupView'
+
+class SignupContainer extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: "",
+      password: "",
+      password_confirmation: "",
+      nickname: "",
+      first_name: "",
+      last_name: ""
+    };
+
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  onSubmit = (values, { setSubmitting }) => {
+    setSubmitting(true);
+
+    this.props.signup(
+      values.email,
+      values.password,
+      values.password_confirmation,
+      values.nickname,
+      values.first_name,
+      values.last_name
+    ).then((didSignup) => {
+      if (didSignup) {
+        // load game and player data
+        this.props.fetchGames();
+        this.props.fetchPlayers();
+
+        // navigate to dashboard
+        this.props.history.push('/');
+      } else {
+        this.props.openAlert({
+          type: 'error',
+          header: 'Sign Up Error',
+          body: 'Please verify your new user information!'
+        });
+
+        setSubmitting(false);
+      }
+    });
+  }
+
+  render () {
+    return (
+      <Signup
+        email={this.state.email}
+        password={this.state.password}
+        password_confirmation={this.state.password_confirmation}
+        nickname={this.state.nickname}
+        first_name={this.state.first_name}
+        last_name={this.state.last_name}
+        onSubmit={this.onSubmit} />
+    );
+  }
+}
+
+const mapDispatchToProps = (dispatch) => (
+  {
+    signup: (email, password, password_confirmation, nickname, first_name, last_name) =>
+      (dispatch(authActions.signup(email, password, password_confirmation, nickname, first_name, last_name))),
+    fetchGames: () => (dispatch(gameActions.fetch())),
+    fetchPlayers: () => (dispatch(playerActions.fetch())),
+    openAlert: (props) => (dispatch(modalActions.open(props))),
+  }
+);
+
+export default connect(null, mapDispatchToProps)(SignupContainer);
