@@ -50,7 +50,6 @@ const WinPieChart = (props) => {
   );
 };
 
-
 const mapStateToProps = state => {
   return {
     games: state.gameReducer.games

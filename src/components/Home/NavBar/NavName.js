@@ -8,9 +8,8 @@ const NavName = (props) => {
 
   return (
     <div className="
-      flex flex-row
-      items-center
-      w-3/5 md:w-full
+      flex flex-row items-center
+      w-3/5 md:w-full h-16
       py-3
       bg-gray-900
     ">

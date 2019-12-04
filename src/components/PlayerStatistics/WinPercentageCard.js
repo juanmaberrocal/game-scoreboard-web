@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 
 const WinPercentageCard = (props) => {
   const winPercentage = ((props.won/props.played) * 100);
-
   const bgColor = winPercentage > 30 ? 'green' : winPercentage > 20 ? 'yellow' : 'red';
 
   return (
