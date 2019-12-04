@@ -5,9 +5,10 @@ import Games from './GamesView'
 
 class GamesContainer extends Component {
   render () {
+    if (this.props.loading) return (<div>LOADING</div>);
+    
     return (
       <Games
-        isFetching={this.props.isFetching}
         games={this.props.games} />
     );
   }

@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import Dashboard from "../components/Dashboard";
 import Games from "../components/Games";
+import Game from "../components/Game";
 import Players from "../components/Players";
 import Player from "../components/Player";
 import NotFound from "../components/NotFound";
@@ -19,8 +20,10 @@ export default function Routes() {
   return (
     <Switch>
       <Route path={path} exact component={Dashboard} />
+      { /* Games */ }
+      <Route path={`${path}games/:gameId`} component={Game} />
       <Route path={`${path}games`} component={Games} />
-
+      { /* Players */ }
       <Route path={`${path}players/:playerId`} component={Player} />
       <Route path={`${path}players`} component={Players} />
       { /* Finally, catch all unmatched routes */ }
