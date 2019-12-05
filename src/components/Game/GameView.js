@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import GameStatistics from '../GameStatistics';
+import IconUser from '../Icons/IconUser';
+import IconClock from '../Icons/IconClock';
 import noAvatar from '../../assets/no-avatar-game.png';
 
 const Game = (props) => {
@@ -22,19 +24,27 @@ const Game = (props) => {
           shadow rounded
         ">
           <div className="w-full AvatarContainer">
-            <img className="h-32 w-full" src={avatarSource} alt="avatar" />
+            <img className="h-40 w-full" src={avatarSource} alt="avatar" />
           </div>
           <div className="
             w-full
             p-3
           ">
             <div className="text-center">
-              <h1 className="font-medium">{game.name}</h1>
+              <h1 className="text-lg font-medium">{game.name}</h1>
             </div>
-            <div>
+            <div className="flex flex-row flex-no-wrap justify-around">
+              <div className="flex flex-col flex-no-wrap items-center p-2">
+                <IconUser className="mx-auto fill-current" />
+                <span className="text-sm">{game.min_players} - {game.max_players}</span>
+              </div>
+              <div className="flex flex-col flex-no-wrap items-center p-2">
+                <IconClock className="mx-auto fill-current" />
+                <span className="text-sm">{game.min_play_time} - {game.max_play_time}</span>
+              </div>
             </div>
             <hr />
-            <div>
+            <div className="leading-snug py-2">
               <span className="text-sm">{game.description}</span>
             </div>
           </div>
