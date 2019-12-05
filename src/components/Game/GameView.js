@@ -43,8 +43,8 @@ const Game = (props) => {
                 <span className="text-sm">{game.min_play_time} - {game.max_play_time}</span>
               </div>
             </div>
-            <hr />
-            <div className="leading-snug py-2">
+            <hr className="pb-2" />
+            <div className="leading-snug">
               <span className="text-sm">{game.description}</span>
             </div>
           </div>
