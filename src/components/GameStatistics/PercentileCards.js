@@ -5,7 +5,14 @@ const PercentileCard = (props) => {
   const bgColor = props.percentile >= 90 ? 'green' : props.percentile >= 75 ? 'yellow' : 'red';
 
   return (
-    <div className="relative h-32 p-3 mr-3 rounded shadow flex-grow">
+    <div className="
+      flex-grow
+      h-16 md:h-32
+      p-3
+      mb-3 md:mb-0 md:mr-3
+      relative
+      rounded shadow
+    ">
       <div className="absolute z-0 right-0 bottom-0">
         <span className="
           text-6xl text-grey-900 font-bold leading-none
@@ -34,7 +41,7 @@ const PercentileCards = (props) => {
     ">
       <h3 className="w-full flex-grow-0 text-sm font-medium">Percentiles</h3>
       <div className="
-        flex flex-row flex-no-wrap items-stretch
+        flex flex-col md:flex-row flex-no-wrap items-stretch
       ">
         {descPercentiles.map((percentile, key) =>
           <PercentileCard key={key}
