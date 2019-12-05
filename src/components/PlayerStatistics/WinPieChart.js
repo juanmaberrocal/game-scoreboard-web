@@ -39,7 +39,7 @@ const WinPieChart = (props) => {
       pl-0 md:pl-3 pb-3 mt-3 md:mt-0
     ">
       <h3 className="w-full flex-grow-0 text-sm font-medium">Win Breakdown</h3>
-      <div className="w-full border bg-white rounded shadow flex-grow">
+      <div className="w-full border bg-white rounded shadow flex-grow overflow-y-auto">
         <Chart className="absolute inset-0 flex items-center"
           type="pie"
           height='100%'
