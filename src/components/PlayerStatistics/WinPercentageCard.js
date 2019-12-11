@@ -8,9 +8,7 @@ const WinPercentageCard = (props) => {
   return (
     <div className="WinPercentageCard
       flex flex-col
-      w-1/2 md:w-1/5
-      h-32 md:h-1/2
-      pl-1 md:px-0 md:pb-3
+      h-full
     ">
       <h3 className="w-full flex-grow-0 text-sm font-medium">Win Percentage</h3>
       <div className="relative w-full rounded shadow flex-grow">

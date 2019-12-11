@@ -3845,6 +3845,10 @@ body {
   height: 100vh;
 }
 
+.h-1\/5 {
+  height: 20%;
+}
+
 .h-1\/4 {
   height: 25%;
 }
@@ -3853,8 +3857,16 @@ body {
   height: 33%;
 }
 
+.h-2\/5 {
+  height: 40%;
+}
+
 .h-1\/2 {
   height: 50%;
+}
+
+.h-3\/5 {
+  height: 60%;
 }
 
 .h-2\/3 {
@@ -3863,6 +3875,10 @@ body {
 
 .h-3\/4 {
   height: 75%;
+}
+
+.h-4\/5 {
+  height: 80%;
 }
 
 .leading-none {
@@ -11629,6 +11645,10 @@ body {
     height: 100vh;
   }
 
+  .sm\:h-1\/5 {
+    height: 20%;
+  }
+
   .sm\:h-1\/4 {
     height: 25%;
   }
@@ -11637,8 +11657,16 @@ body {
     height: 33%;
   }
 
+  .sm\:h-2\/5 {
+    height: 40%;
+  }
+
   .sm\:h-1\/2 {
     height: 50%;
+  }
+
+  .sm\:h-3\/5 {
+    height: 60%;
   }
 
   .sm\:h-2\/3 {
@@ -11647,6 +11675,10 @@ body {
 
   .sm\:h-3\/4 {
     height: 75%;
+  }
+
+  .sm\:h-4\/5 {
+    height: 80%;
   }
 
   .sm\:leading-none {
@@ -19399,6 +19431,10 @@ body {
     height: 100vh;
   }
 
+  .md\:h-1\/5 {
+    height: 20%;
+  }
+
   .md\:h-1\/4 {
     height: 25%;
   }
@@ -19407,8 +19443,16 @@ body {
     height: 33%;
   }
 
+  .md\:h-2\/5 {
+    height: 40%;
+  }
+
   .md\:h-1\/2 {
     height: 50%;
+  }
+
+  .md\:h-3\/5 {
+    height: 60%;
   }
 
   .md\:h-2\/3 {
@@ -19417,6 +19461,10 @@ body {
 
   .md\:h-3\/4 {
     height: 75%;
+  }
+
+  .md\:h-4\/5 {
+    height: 80%;
   }
 
   .md\:leading-none {
@@ -27169,6 +27217,10 @@ body {
     height: 100vh;
   }
 
+  .lg\:h-1\/5 {
+    height: 20%;
+  }
+
   .lg\:h-1\/4 {
     height: 25%;
   }
@@ -27177,8 +27229,16 @@ body {
     height: 33%;
   }
 
+  .lg\:h-2\/5 {
+    height: 40%;
+  }
+
   .lg\:h-1\/2 {
     height: 50%;
+  }
+
+  .lg\:h-3\/5 {
+    height: 60%;
   }
 
   .lg\:h-2\/3 {
@@ -27187,6 +27247,10 @@ body {
 
   .lg\:h-3\/4 {
     height: 75%;
+  }
+
+  .lg\:h-4\/5 {
+    height: 80%;
   }
 
   .lg\:leading-none {
@@ -34939,6 +35003,10 @@ body {
     height: 100vh;
   }
 
+  .xl\:h-1\/5 {
+    height: 20%;
+  }
+
   .xl\:h-1\/4 {
     height: 25%;
   }
@@ -34947,8 +35015,16 @@ body {
     height: 33%;
   }
 
+  .xl\:h-2\/5 {
+    height: 40%;
+  }
+
   .xl\:h-1\/2 {
     height: 50%;
+  }
+
+  .xl\:h-3\/5 {
+    height: 60%;
   }
 
   .xl\:h-2\/3 {
@@ -34957,6 +35033,10 @@ body {
 
   .xl\:h-3\/4 {
     height: 75%;
+  }
+
+  .xl\:h-4\/5 {
+    height: 80%;
   }
 
   .xl\:leading-none {
