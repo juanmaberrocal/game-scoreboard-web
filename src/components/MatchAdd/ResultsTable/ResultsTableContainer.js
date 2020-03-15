@@ -8,7 +8,8 @@ class ResultsTableContainer extends Component {
     return (
       <ResultsTable
         value={this.props.value}
-        players={this.props.players} />
+        players={this.props.players}
+        errors={this.props.errors} />
     );
   }
 }

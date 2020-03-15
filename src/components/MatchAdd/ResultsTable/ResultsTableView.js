@@ -4,7 +4,7 @@ import { Field, FieldArray } from 'formik';
 
 const ResultsTableHeader = (props) => (
   <div className="ResultsTableHeader">
-    <div className="flex flex-row flex-no-wrap">
+    <div className="flex flex-row flex-no-wrap mb-3">
       <div className="w-1/5 text-center">+/-</div>
       <div className="w-3/5">Player</div>
       <div className="w-1/5 text-center">Winner</div>
@@ -18,14 +18,16 @@ const ResultsTableRow = (props) => {
     player.id === parseInt(props.playerSelected) ||
     !props.playersSelected.includes(player.id)
   ));
+  const errors = (props.errors === undefined) ? {} : props.errors;
 
   return (
     <div className="ResultsTableRow">
-      <div className="flex flex-row flex-no-wrap">
+      <div className="flex flex-row flex-no-wrap mb-2">
         <div className="w-1/5 text-center">
-          <button type="button" onClick={() => props.onRemove(props.index)}>
-            -
-          </button>
+          {props.index === 0
+            ? <span className="text-gray-500">-</span>
+            : <button className="text-red-500" type="button" onClick={() => props.onRemove(props.index)}>-</button>
+          }
         </div>
         <div className="w-3/5">
           <div className="relative">
@@ -41,6 +43,10 @@ const ResultsTableRow = (props) => {
               <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
             </div>
           </div>
+          <p className={`
+            ${(errors.player_id) ? '' : 'hidden'}
+            text-red-500 text-xs italic mt-3
+          `}>{errors.player_id}</p>
         </div>
         <div className="w-1/5 text-center">
           <Field type="checkbox" name={`results[${props.index}].winner`} />
@@ -53,7 +59,7 @@ const ResultsTableRow = (props) => {
 const ResultsTableRowAdd = (props) => (
   <div className="ResultsTableFooter">
     <div className="flex flex-row flex-no-wrap">
-      <div className="w-1/5 text-center">
+      <div className="w-1/5 text-center text-green-500 font-medium">
         <button type="button" onClick={() => props.onAdd({player_id: 0, winner: false})}>
           +
         </button>
@@ -65,6 +71,7 @@ const ResultsTableRowAdd = (props) => (
 
 const ResultsTable = (props) => {
   const playersSelected = props.value.map(v => parseInt(v.player_id));
+  const errors = (props.errors === undefined) ? [] : props.errors;
 
   return (
     <div className="ResultsTable
@@ -84,6 +91,7 @@ const ResultsTable = (props) => {
                   players={props.players}
                   playersSelected={playersSelected}
                   playerSelected={result.player_id}
+                  errors={errors[index]}
                   onRemove={arrayHelpers.remove} />
               )}
               <ResultsTableRowAdd onAdd={arrayHelpers.push} />

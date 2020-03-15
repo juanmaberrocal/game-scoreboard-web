@@ -65,7 +65,7 @@ const MatchAdd = (props) => {
                   `}>{errors.game_id}</p>
                 </div>
                 <div className="mb-4 w-full">
-                  <Field as={ResultsTable} name="results" />
+                  <Field as={ResultsTable} name="results" errors={errors.results} />
                   <p className={`
                     ${(touched.results && errors.results) ? '' : 'hidden'}
                     text-red-500 text-xs italic mt-3
