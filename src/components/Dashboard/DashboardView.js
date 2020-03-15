@@ -16,7 +16,7 @@ const Dashboard = (props) => {
         h-full w-full
         p-3 md:px-16 md:py-8
       ">
-        <div className="hidden
+        <div className="
           w-full border bg-white rounded shadow mb-3
         ">HEADER</div>
         <PlayerStatistics

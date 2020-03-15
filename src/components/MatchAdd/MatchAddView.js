@@ -100,7 +100,8 @@ const MatchAdd = (props) => {
 MatchAdd.propTypes = {
   game_id: PropTypes.number.isRequired,
   games: PropTypes.array.isRequired,
-  results: PropTypes.array.isRequired
+  results: PropTypes.array.isRequired,
+  onSubmit: PropTypes.func.isRequired
 };
 
 export default MatchAdd
