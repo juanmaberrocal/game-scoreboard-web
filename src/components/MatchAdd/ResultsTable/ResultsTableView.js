@@ -106,7 +106,7 @@ const ResultsTable = (props) => {
 ResultsTable.propTypes = {
   players: PropTypes.array.isRequired,
   value: PropTypes.array.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.array.isRequired
 };
 
 export default ResultsTable

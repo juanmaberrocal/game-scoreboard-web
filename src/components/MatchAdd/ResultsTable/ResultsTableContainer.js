@@ -7,7 +7,7 @@ class ResultsTableContainer extends Component {
   render() {
     const errors = (
       this.props.errors === undefined || typeof this.props.errors === 'string'
-    ) ? {} : this.props.errors;
+    ) ? [] : this.props.errors;
 
     return (
       <ResultsTable
