@@ -27,8 +27,7 @@ class Player extends Model {
       .then((response) => {
         const data = response.data.data;
         const attributes = data.attributes;
-        this._setAttributes(attributes);
-        // this._setAttributes([], attributes);
+        this._setAttributes([], attributes);
 
         return { success: true, player: attributes };
       })
