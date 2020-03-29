@@ -1,17 +1,12 @@
-import API from './Api';
+import Model from './Model';
+import API from '../services/Api';
 
-class Match {
-  constructor(id, attributes = {}) {
-    this.id = id ? parseInt(id, 10) : null;
-
-    this._setAttributes(attributes);
-  }
-
+class Match extends Model {
   /*
    Class
    */
   static fetch(fetchParams = {}) {
-    const url = 'v1/matches';
+    const url = `${Match.#v1Url}`;
     const params = { params: fetchParams };
 
     return API.get(url, params)
@@ -26,7 +21,7 @@ class Match {
   }
 
   static create(gameId, results) {
-    const url = 'v1/matches';
+    const url = `${Match.#v1Url}`;
 
     return API.post(url, {
       match: {
@@ -45,21 +40,35 @@ class Match {
   }
 
   /*
+   Instance
+   */
+  isConfirmed = () => (this.match_status === "confirmed");
+  isPending = () => (this.match_status === "pending");
+  isRejected = () => (this.match_status === "rejected");
+
+  /*
    Private
    */
+  static #v1Url = 'v1/matches';
+
   static #attributes = [
-    'game_id',
+    'match_status',
     'played_on',
-    'results'
+    'results',
+  ];
+
+  static #relationships = [
+    'match_players',
+    'game',
   ];
 
   // Support for the experimental syntax 'classPrivateMethods' isn't currently enabled
-  _setAttributes(attributes) {
-    Match.#attributes.forEach((attribute) => {
-      if (attributes[attribute]) {
-        this[attribute] = attributes[attribute]
-      }
-    });
+  _setAttributes(_, attributes) {
+    super._setRelationships(Match.#attributes, attributes);
+  }
+
+  _setRelationships(_, relationships) {
+    super._setRelationships(Match.#relationships, relationships);
   }
 }
 

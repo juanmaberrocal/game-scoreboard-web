@@ -1,4 +1,4 @@
-import Player from '../../services/Player';
+import Player from '../../models/Player';
 
 export const PLAYER_FETCH_REQUEST = 'PLAYER_FETCH_REQUEST'
 function fetchRequest() {

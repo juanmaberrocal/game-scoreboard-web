@@ -1,6 +1,6 @@
 import API from './Api';
-import Player from './Player'
 import StoredUser from './StoredUser'
+import Player from '../models/Player'
 
 class Auth {
   static renew() {

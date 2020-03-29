@@ -1,23 +1,16 @@
-import API from './Api';
+import Model from './Model';
+import API from '../services/Api';
 
-class Player {
-  constructor(id, attributes = {}) {
-    this.id = id ? parseInt(id, 10) : null;
-    this._setAttributes(attributes);
-  }
-
+class Game extends Model {
   /*
    Class
    */
   static fetch() {
-    const url = 'v1/players?public=true';
+    const url = `${Game.#v1Url}?public=true`;
 
     return API.get(url)
       .then((response) => {
-        const data = response.data.data;
-        const players = data.map((player) => (new Player(player.id, player.attributes)));
-
-        return { success: true, players: players };
+        return { success: true, games: response.serializedData };
       })
       .catch((error) => {
         return { success: false };
@@ -28,15 +21,15 @@ class Player {
    Instance
    */
   fetch() {
-    const url = `v1/players/${this.id}`;
+    const url = `${this._v1Url()}`;
 
     return API.get(url)
       .then((response) => {
         const data = response.data.data;
         const attributes = data.attributes;
-        this._setAttributes(attributes);
+        this._setAttributes([], attributes);
 
-        return { success: true, player: attributes };
+        return { success: true, game: attributes };
       })
       .catch((error) => {
         return { success: false };
@@ -44,7 +37,7 @@ class Player {
   }
 
   statistics() {
-    const url = `v1/players/${this.id}/statistics`;
+    const url = `${this._v1Url()}/statistics`;
 
     return API.get(url)
       .then((response) => {
@@ -61,23 +54,30 @@ class Player {
   /*
    Private
    */
+  static #v1Url = 'v1/games';
+
   static #attributes = [
-    'nickname',
-    'email',
-    'first_name',
-    'last_name',
-    'role',
+    'name',
+    'description',
+    'min_players',
+    'max_players',
+    'min_play_time',
+    'max_play_time',
     'avatar_url'
   ];
 
+  static #relationships = [];
+
   // Support for the experimental syntax 'classPrivateMethods' isn't currently enabled
-  _setAttributes(attributes) {
-    Player.#attributes.forEach((attribute) => {
-      if (attributes[attribute]) {
-        this[attribute] = attributes[attribute]
-      }
-    });
+  _v1Url() { return (`${Game.#v1Url}/${this.id}`); }
+
+  _setAttributes(_, attributes) {
+    super._setRelationships(Game.#attributes, attributes);
+  }
+
+  _setRelationships(_, relationships) {
+    super._setRelationships(Game.#relationships, relationships);
   }
 }
 
-export default Player;
+export default Game;

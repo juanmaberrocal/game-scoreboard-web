@@ -1,4 +1,4 @@
-import Game from '../../services/Game';
+import Game from '../../models/Game';
 
 export const GAME_FETCH_REQUEST = 'GAME_FETCH_REQUEST'
 function fetchRequest() {
