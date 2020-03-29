@@ -5,17 +5,6 @@ class Game extends Model {
   /*
    Class
    */
-  static fetch() {
-    const url = `${Game.#v1Url}?public=true`;
-
-    return API.get(url)
-      .then((response) => {
-        return { success: true, games: response.serializedData };
-      })
-      .catch((error) => {
-        return { success: false };
-      });
-  }
 
   /*
    Instance
@@ -51,19 +40,29 @@ class Game extends Model {
       });
   }
 
+  // Getters
+  get avatar_url() { return this.attributes.avatar_url; }
+  get description() { return this.attributes.description; }
+  get max_play_time() { return this.attributes.max_play_time; }
+  get max_players() { return this.attributes.max_players; }
+  get min_play_time() { return this.attributes.min_play_time; }
+  get min_players() { return this.attributes.min_players; }
+  get name() { return this.attributes.name; }
+
   /*
    Private
    */
+  static #model = 'Game';
   static #v1Url = 'v1/games';
 
   static #attributes = [
-    'name',
+    'avatar_url',
     'description',
-    'min_players',
+    'max_play_time',
     'max_players',
     'min_play_time',
-    'max_play_time',
-    'avatar_url'
+    'min_players',
+    'name',
   ];
 
   static #relationships = [];
@@ -71,8 +70,12 @@ class Game extends Model {
   // Support for the experimental syntax 'classPrivateMethods' isn't currently enabled
   _v1Url() { return (`${Game.#v1Url}/${this.id}`); }
 
+  _setModel(_) {
+    super._setModel(Game.#model);
+  }
+
   _setAttributes(_, attributes) {
-    super._setRelationships(Game.#attributes, attributes);
+    super._setAttributes(Game.#attributes, attributes);
   }
 
   _setRelationships(_, relationships) {

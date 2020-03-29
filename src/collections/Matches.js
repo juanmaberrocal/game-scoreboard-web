@@ -11,6 +11,9 @@ class Matches extends Collection {
   /*
    Instance
    */
+  confirmed = () => (this.filter(match => match.isConfirmed()));
+  pending = () => (this.filter(match => match.isPending()));
+  rejected = () => (this.filter(match => match.isRejected()));
 
   /*
    Private

@@ -42,13 +42,29 @@ class Match extends Model {
   /*
    Instance
    */
+  // Getters
+  get match_status() { return this.attributes.match_status; }
+  get played_on() { return this.attributes.played_on; }
+  get results() { return this.attributes.results; }
+
+  // Enums
   isConfirmed = () => (this.match_status === "confirmed");
   isPending = () => (this.match_status === "pending");
   isRejected = () => (this.match_status === "rejected");
 
+  // Results
+  firstResult() {
+    return this.match_players.first();
+  }
+
+  playerResult(playerId) {
+    return this.match_players.find(match_player => match_player.playerId() === playerId);
+  }
+
   /*
    Private
    */
+  static #model = 'Match';
   static #v1Url = 'v1/matches';
 
   static #attributes = [
@@ -63,8 +79,12 @@ class Match extends Model {
   ];
 
   // Support for the experimental syntax 'classPrivateMethods' isn't currently enabled
+  _setModel(_) {
+    super._setModel(Match.#model);
+  }
+
   _setAttributes(_, attributes) {
-    super._setRelationships(Match.#attributes, attributes);
+    super._setAttributes(Match.#attributes, attributes);
   }
 
   _setRelationships(_, relationships) {

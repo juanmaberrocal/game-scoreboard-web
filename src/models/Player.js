@@ -5,17 +5,6 @@ class Player extends Model {
   /*
    Class
    */
-  static fetch() {
-    const url = `${Player.#v1Url}?public=true`;
-
-    return API.get(url)
-      .then((response) => {
-        return { success: true, players: response.serializedData };
-      })
-      .catch((error) => {
-        return { success: false };
-      });
-  }
 
   /*
    Instance
@@ -44,7 +33,6 @@ class Player extends Model {
         return { success: true, matches: response.serializedData };
       })
       .catch((error) => {
-        console.log(error);
         return { success: false };
       });
   }
@@ -64,18 +52,27 @@ class Player extends Model {
       });
   }
 
+  // Getters
+  get avatar_url() { return this.attributes.avatar_url; }
+  get email() { return this.attributes.email; }
+  get first_name() { return this.attributes.first_name; }
+  get last_name() { return this.attributes.last_name; }
+  get nickname() { return this.attributes.nickname; }
+  get role() { return this.attributes.role; }
+
   /*
    Private
    */
+  static #model = 'Player';
   static #v1Url = 'v1/players';
 
   static #attributes = [
-    'nickname',
+    'avatar_url',
     'email',
     'first_name',
     'last_name',
+    'nickname',
     'role',
-    'avatar_url'
   ];
 
   static #relationships = [];
@@ -83,8 +80,12 @@ class Player extends Model {
   // Support for the experimental syntax 'classPrivateMethods' isn't currently enabled
   _v1Url() { return (`${Player.#v1Url}/${this.id}`); }
 
+  _setModel(_) {
+    super._setModel(Player.#model);
+  }
+
   _setAttributes(_, attributes) {
-    super._setRelationships(Player.#attributes, attributes);
+    super._setAttributes(Player.#attributes, attributes);
   }
 
   _setRelationships(_, relationships) {
