@@ -15,12 +15,12 @@ class CollectionFactory {
   /*
    Private
    */
-  static #collections = {
+  static #collections = (collectionName) => ({
     game: Games,
     match: Matches,
     match_player: MatchPlayers,
     player: Players
-  }
+  }[collectionName])
 
   // Support for the experimental syntax 'classPrivateMethods' isn't currently enabled
   _build() {
@@ -29,7 +29,7 @@ class CollectionFactory {
 
   _getKlass(klassName) {
     const collectionName = klassName.replace(/s$/, '');
-    return CollectionFactory.#collections[collectionName];
+    return CollectionFactory.#collections(collectionName);
   }
 
   _getRecords(klassName, recordsData, included) {

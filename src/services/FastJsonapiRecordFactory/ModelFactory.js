@@ -17,12 +17,12 @@ class ModelFactory {
   /*
    Private
    */
-  static #models = {
+  static #models = (modelName) => ({
     game: Game,
     match: Match,
     match_player: MatchPlayer,
     player: Player
-  }
+  }[modelName])
 
   // Support for the experimental syntax 'classPrivateMethods' isn't currently enabled
   _build() {
@@ -31,7 +31,7 @@ class ModelFactory {
 
   _getKlass(klassName) {
     const modelName = klassName.replace(/s$/, '');
-    return ModelFactory.#models[modelName];
+    return ModelFactory.#models(modelName);
   }
 
   _getRelationships(relationshipsData, included) {
