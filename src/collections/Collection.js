@@ -1,5 +1,5 @@
 class Collection {
-  constructor(records) {
+  constructor(records = []) {
     this._setModel(Collection.#model);
     this._setModels(records);
     this._setLength();
