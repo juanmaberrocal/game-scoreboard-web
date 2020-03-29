@@ -13,6 +13,9 @@ class MatchPlayer extends Model {
   get result_status() { return this.attributes.result_status; }
   get winner() { return this.attributes.winner; }
 
+  get match() { return this.relationships.match; }
+  get player() { return this.relationships.player; }
+
   // Enums
   isConfirmed = () => (this.result_status === "confirmed");
   isPending = () => (this.result_status === "pending");

@@ -47,6 +47,9 @@ class Match extends Model {
   get played_on() { return this.attributes.played_on; }
   get results() { return this.attributes.results; }
 
+  get game() { return this.relationships.game; }
+  get match_players() { return this.relationships.match_players; }
+
   // Enums
   isConfirmed = () => (this.match_status === "confirmed");
   isPending = () => (this.match_status === "pending");
@@ -74,8 +77,8 @@ class Match extends Model {
   ];
 
   static #relationships = [
-    'match_players',
     'game',
+    'match_players',
   ];
 
   // Support for the experimental syntax 'classPrivateMethods' isn't currently enabled

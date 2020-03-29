@@ -2,6 +2,7 @@ class Model {
   constructor(id, attributes = {}, relationships = {}) {
     this.id = id ? parseInt(id, 10) : null;
     this.attributes = {}
+    this.relationships = {}
 
     this._setModel(Model.#model);
     this._setAttributes(Model.#attributes, attributes);
@@ -41,7 +42,7 @@ class Model {
   _setRelationships(klassRelationships, relationships) {
     klassRelationships.forEach((relationship) => {
       if (relationships[relationship]) {
-        this[relationship] = relationships[relationship]
+        this.relationships[relationship] = relationships[relationship]
       }
     });
   }
