@@ -1,7 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { NavLink } from "react-router-dom";
+// React
+import React from 'react';
+import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 
+// Models && Collections
+import Player from '../../../models/Player';
+
+// Components
 import IconPlusCircle from '../../Icons/IconPlusCircle';
 import noAvatar from '../../../assets/no-avatar-player.png';
 
@@ -42,7 +47,7 @@ const HeaderBar = (props) => {
 };
 
 HeaderBar.propTypes = {
-  player: PropTypes.object.isRequired
+  player: PropTypes.instanceOf(Player).isRequired
 };
 
 export default HeaderBar;

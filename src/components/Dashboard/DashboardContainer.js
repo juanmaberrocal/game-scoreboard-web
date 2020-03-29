@@ -1,24 +1,31 @@
+// React
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 
+// Components
 import Dashboard from "./DashboardView";
-import Match from '../../services/Match';
 
 class DashboardContainer extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      matches: [],
+      pendingMatches: [],
+      confirmedMatches: [],
     };
   }
 
   async componentDidMount() {
-    Match.fetch({
-      player_id: this.props.player.id
-    }).then((response) => {
+    this.props.player.matches().then((response) => {
       if (response.success) {
-        this.setState({matches: response.matches});
+        const matches = response.matches;
+        const pendingMatches = matches.filter(match => match.match_players.first().isPending());
+        const confirmedMatches = matches.filter(match => match.isConfirmed());
+
+        this.setState({
+          pendingMatches: pendingMatches,
+          confirmedMatches: confirmedMatches
+        });
       }
     });
   }
@@ -27,16 +34,15 @@ class DashboardContainer extends Component {
     return (
       <Dashboard
         player={this.props.player}
-        games={this.props.games}
-        matches={this.state.matches} />
+        pendingMatches={this.state.pendingMatches}
+        confirmedMatches={this.state.confirmedMatches} />
     );
   }
 }
 
 const mapStateToProps = state => {
   return {
-    player: state.authReducer.player,
-    games: state.gameReducer.games
+    player: state.authReducer.player
   };
 };
 
