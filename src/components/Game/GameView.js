@@ -1,6 +1,11 @@
+// React
 import React from "react";
 import PropTypes from "prop-types";
 
+// Models && Collections
+import GameModel from '../../models/Game';
+
+// Components
 import Breadcrumb from '../Breadcrumb';
 import GameStatistics from '../GameStatistics';
 import IconUser from '../Icons/IconUser';
@@ -74,7 +79,7 @@ const Game = (props) => {
 };
 
 Game.propTypes = {
-  game: PropTypes.object.isRequired
+  game: PropTypes.instanceOf(GameModel).isRequired
 };
 
 export default Game

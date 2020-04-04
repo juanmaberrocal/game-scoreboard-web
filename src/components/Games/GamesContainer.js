@@ -1,12 +1,14 @@
+// React
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 
+// Components
 import Games from './GamesView'
 
 class GamesContainer extends Component {
   render () {
     if (this.props.loading) return (<div>LOADING</div>);
-    
+
     return (
       <Games
         games={this.props.games} />

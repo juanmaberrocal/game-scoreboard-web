@@ -1,6 +1,10 @@
+// React
 import React, { Component } from "react";
 
+// Models && Collections
 import GameModel from '../../models/Game';
+
+// Components
 import Game from './GameView';
 import withLoadingScreen from '../LoadingScreen';
 
