@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import PlayerModel from '../../services/Player';
+import PlayerModel from '../../models/Player';
 import Player from './PlayerView';
 import withLoadingScreen from '../LoadingScreen';
 
