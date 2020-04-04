@@ -1,6 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
+// React
+import React from 'react';
+import PropTypes from 'prop-types';
 
+// Components
 import Leaderboard from './Leaderboard';
 import PercentileCards from './PercentileCards';
 

@@ -1,6 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
+// React
+import React from 'react';
+import PropTypes from 'prop-types';
 
+// Components
 import GamesPlayedCard from './GamesPlayedCard';
 import WinPercentageCard from './WinPercentageCard';
 import WinPieChart from './WinPieChart';

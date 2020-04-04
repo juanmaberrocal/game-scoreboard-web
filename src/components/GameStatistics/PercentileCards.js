@@ -1,5 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
+// React
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const PercentileCard = (props) => {
   const bgColor = props.percentile >= 90 ? 'green' : props.percentile >= 75 ? 'yellow' : 'red';

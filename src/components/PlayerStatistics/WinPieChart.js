@@ -1,8 +1,10 @@
-import React from "react";
+// React
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import PropTypes from "prop-types";
 
-import Chart from "react-apexcharts";
+// Components
+import Chart from 'react-apexcharts';
 
 const buildPieData = (breakdown) => {
   let pieData = {};

@@ -1,6 +1,7 @@
-import React from "react";
+// React
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import PropTypes from "prop-types";
 
 const LeaderboardRow = (props) => {
   const playerData = props.players.find((player) => (player.id === parseInt(props.row.player_id, 10)));
