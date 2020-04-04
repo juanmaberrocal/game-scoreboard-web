@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import GameModel from '../../services/Game';
+import GameModel from '../../models/Game';
 import Game from './GameView';
 import withLoadingScreen from '../LoadingScreen';
 
