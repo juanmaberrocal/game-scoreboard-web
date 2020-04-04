@@ -27,7 +27,9 @@ const Dashboard = (props) => {
           flex flex-col flex-no-wrap
           w-full h-auto
         ">
-          <PendingMatchesList matches={props.pendingMatches} />
+          <PendingMatchesList
+            matches={props.pendingMatches}
+            doRefresh={props.doRefresh} />
         </div>
         <div className="
           flex flex-col flex-no-wrap
@@ -51,7 +53,8 @@ const Dashboard = (props) => {
 Dashboard.propTypes = {
   player: PropTypes.instanceOf(Player).isRequired,
   pendingMatches: PropTypes.array.isRequired,
-  confirmedMatches: PropTypes.array.isRequired
+  confirmedMatches: PropTypes.array.isRequired,
+  doRefresh: PropTypes.func.isRequired,
 };
 
 export default Dashboard

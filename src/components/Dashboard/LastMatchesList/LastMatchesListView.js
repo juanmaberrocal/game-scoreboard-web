@@ -9,7 +9,7 @@ import Games from '../../../collections/Games';
 import { timestampToDate } from '../../../utils/DateTime';
 
 const LastMatchListItem = (props) => {
-  const gameData = props.games.find((game) => (game.id === props.match.game.id));
+  const gameData = props.games.findById(props.match.gameId());
   const gameName = gameData ? gameData.name : '';
 
   return (
@@ -19,7 +19,7 @@ const LastMatchListItem = (props) => {
           <span>{gameName[0]}</span>
         </div>
         {
-          props.match.winner ? (
+          props.match.firstResult().winner ? (
             <div className="absolute z-0 bottom-0 h-12 w-4 border bg-green-400 rounded-full border-gray-900 ml-2"></div>
           ) : (
             <div className="absolute z-0 top-0 h-12 w-4 border bg-red-400 rounded-full border-gray-900 ml-2"></div>

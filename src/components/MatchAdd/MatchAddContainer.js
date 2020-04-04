@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { modalActions } from '../../redux/actions'
 import MatchAdd from './MatchAddView';
-import Match from '../../services/Match';
+import Match from '../../models/Match';
 
 class MatchAddContainer extends Component {
   constructor(props) {

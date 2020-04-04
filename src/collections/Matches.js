@@ -7,6 +7,18 @@ class Matches extends Collection {
   /*
    Class
    */
+  static fetch(fetchParams = {}) {
+    const url = `${Matches.#v1Url}`;
+    const params = { params: fetchParams };
+
+    return API.get(url, params)
+      .then((response) => {
+        return { success: true, matches: response.serializedData };
+      })
+      .catch((error) => {
+        return { success: false };
+      });
+  }
 
   /*
    Instance
@@ -19,6 +31,7 @@ class Matches extends Collection {
    Private
    */
   static #model = 'Match';
+  static #v1Url = 'v1/matches';
 
   // Support for the experimental syntax 'classPrivateMethods' isn't currently enabled
   _setModel(_) {

@@ -13,18 +13,26 @@ class DashboardContainer extends Component {
       pendingMatches: [],
       confirmedMatches: [],
     };
+
+    this.fetchPlayerMatches = this.fetchPlayerMatches.bind(this);
   }
 
   async componentDidMount() {
-    this.props.player.matches().then((response) => {
+    this.fetchPlayerMatches();
+  }
+
+  fetchPlayerMatches() {
+    const player = this.props.player;
+
+    player.matches().then((response) => {
       if (response.success) {
         const matches = response.matches;
-        const pendingMatches = matches.filter(match => match.match_players.first().isPending());
-        const confirmedMatches = matches.filter(match => match.isConfirmed());
+        const confirmedMatches = matches.confirmed();
+        const pendingMatches = matches.filter(match => match.playerResult(player.id).isPending());
 
         this.setState({
+          confirmedMatches: confirmedMatches,
           pendingMatches: pendingMatches,
-          confirmedMatches: confirmedMatches
         });
       }
     });
@@ -34,8 +42,9 @@ class DashboardContainer extends Component {
     return (
       <Dashboard
         player={this.props.player}
+        confirmedMatches={this.state.confirmedMatches}
         pendingMatches={this.state.pendingMatches}
-        confirmedMatches={this.state.confirmedMatches} />
+        doRefresh={this.fetchPlayerMatches} />
     );
   }
 }

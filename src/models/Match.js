@@ -5,21 +5,6 @@ class Match extends Model {
   /*
    Class
    */
-  static fetch(fetchParams = {}) {
-    const url = `${Match.#v1Url}`;
-    const params = { params: fetchParams };
-
-    return API.get(url, params)
-      .then((response) => {
-        const data = response.data.data;
-        const matches = data.map((match) => (new Match(match.id, match.attributes)));
-        return { success: true, matches: matches };
-      })
-      .catch((error) => {
-        return { success: false };
-      });
-  }
-
   static create(gameId, results) {
     const url = `${Match.#v1Url}`;
 
@@ -42,6 +27,25 @@ class Match extends Model {
   /*
    Instance
    */
+  fetch(replace = true) {
+    const url = `${this._v1Url()}`;
+
+    return API.get(url)
+      .then((response) => {
+        const serializedData = response.serializedData;
+
+        if (replace) {
+          this.attributes = serializedData.attributes;
+          this.relationships = serializedData.relationships;
+        }
+
+        return { success: true, match: (replace ? this : serializedData) };
+      })
+      .catch((error) => {
+        return { success: false };
+      });
+  }
+
   // Getters
   get match_status() { return this.attributes.match_status; }
   get played_on() { return this.attributes.played_on; }
@@ -55,13 +59,18 @@ class Match extends Model {
   isPending = () => (this.match_status === "pending");
   isRejected = () => (this.match_status === "rejected");
 
+  // Game
+  gameId() {
+    return this.game.id;
+  }
+
   // Results
   firstResult() {
     return this.match_players.first();
   }
 
   playerResult(playerId) {
-    return this.match_players.find(match_player => match_player.playerId() === playerId);
+    return this.match_players.playerResult(playerId);
   }
 
   /*
@@ -82,6 +91,8 @@ class Match extends Model {
   ];
 
   // Support for the experimental syntax 'classPrivateMethods' isn't currently enabled
+  _v1Url() { return (`${Match.#v1Url}/${this.id}`); }
+
   _setModel(_) {
     super._setModel(Match.#model);
   }

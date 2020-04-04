@@ -11,6 +11,9 @@ class MatchPlayers extends Collection {
   /*
    Instance
    */
+  playerResult(playerId) {
+    return this.find(match_player => match_player.playerId() === playerId);
+  }
 
   /*
    Private

@@ -1,4 +1,4 @@
-// Reach
+// React
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -9,18 +9,23 @@ import Games from '../../../collections/Games';
 import { timestampToDate } from '../../../utils/DateTime';
 
 const PendingMatchListItem = (props) => {
-  const gameData = props.games.find((game) => (game.id === props.match.game.id));
-  const gameName = gameData ? gameData.name : '';
+  const match = props.match;
+  const matchPlayer = match.firstResult();
+  const game = props.games.findById(match.gameId());
+  const gameName = game ? game.name : '';
+  const bgColor = matchPlayer.winner ? 'green' : 'red';
 
   return (
-    <button className="
-      flex flex-col flex-no-wrap justify-center
+    <button className={`
+      PendingMatchListItem
       h-32 w-32 mr-3
-      items-center border bg-white rounded shadow
+      flex flex-col flex-no-wrap justify-center
+      items-center rounded shadow
+      bg-${bgColor}-100 border border-${bgColor}-900
       cursor-pointer
-    ">
+    `} onClick={() => props.onClick(game, match, matchPlayer)}>
       <div>{gameName}</div>
-      <div className="text-sm">{timestampToDate(props.match.played_on)}</div>
+      <div className="text-sm">{timestampToDate(match.played_on)}</div>
     </button>
   )
 }
@@ -39,7 +44,8 @@ const PendingMatchesList = (props) => {
           <PendingMatchListItem
             key={match.id}
             match={match}
-            games={props.games} />
+            games={props.games}
+            onClick={props.onClick} />
         )}
       </div>
     </div>
@@ -48,7 +54,8 @@ const PendingMatchesList = (props) => {
 
 PendingMatchesList.propTypes = {
   games: PropTypes.instanceOf(Games).isRequired,
-  matches: PropTypes.array.isRequired
+  matches: PropTypes.array.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default PendingMatchesList;

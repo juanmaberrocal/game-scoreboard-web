@@ -1,7 +1,7 @@
 class Collection {
   constructor(records = []) {
     this._setModel(Collection.#model);
-    this._setModels(records);
+    this._setRecords(records);
     this._setLength();
   }
 
@@ -13,27 +13,31 @@ class Collection {
    Instance
    */
   all() {
-    return this.models;
+    return this.records;
   }
 
   find(...args) {
-    return this.models.find(...args);
+    return this.records.find(...args);
+  }
+
+  findById(id) {
+    return this.find(record => record.id === id);
   }
 
   map(...args) {
-    return this.models.map(...args);
+    return this.records.map(...args);
   }
 
   filter(...args) {
-    return this.models.filter(...args);
+    return this.records.filter(...args);
   }
 
   first() {
-    return this.models[0];
+    return this.records[0];
   }
 
   last() {
-    return this.models[this.length - 1]
+    return this.records[this.length - 1]
   }
 
   /*
@@ -46,12 +50,12 @@ class Collection {
     this.model = model;
   }
 
-  _setModels(records) {
-    this.models = records.filter(record => record.constructor.name === this.model);
+  _setRecords(records) {
+    this.records = records.filter(record => record.constructor.name === this.model);
   }
 
   _setLength() {
-    this.length = this.models.length;
+    this.length = this.records.length;
   }
 }
 
