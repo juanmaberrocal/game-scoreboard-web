@@ -1,7 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
+// React
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import PlayerCard from './PlayerCard';
+// Models && Collections
+import PlayersCollection from '../../collections/Players';
+
+// Components
+import PlayerCard from "./PlayerCard"
 import Breadcrumb from '../Breadcrumb';
 
 const Players = (props) => {
@@ -32,7 +37,7 @@ const Players = (props) => {
 };
 
 Players.propTypes = {
-  players: PropTypes.array.isRequired
+  players: PropTypes.instanceOf(PlayersCollection).isRequired
 };
 
 export default Players

@@ -1,9 +1,16 @@
+// React
 import React from "react";
 import PropTypes from "prop-types";
 
+// Models && Collections
+import PlayerModel from '../../models/Player';
+
+// Components
 import Breadcrumb from '../Breadcrumb';
 import PlayerStatistics from '../PlayerStatistics';
 import noAvatar from '../../assets/no-avatar-player.png';
+
+// Styles
 import './Player.css';
 
 const Player = (props) => {
@@ -66,7 +73,7 @@ const Player = (props) => {
 };
 
 Player.propTypes = {
-  player: PropTypes.object.isRequired
+  player: PropTypes.instanceOf(PlayerModel).isRequired
 };
 
 export default Player

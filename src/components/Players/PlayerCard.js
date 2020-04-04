@@ -1,7 +1,12 @@
+// React
 import React from "react";
 import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
 
+// Models && Collections
+import Player from '../../models/Player';
+
+// Components
 import noAvatar from '../../assets/no-avatar-player.png';
 
 const PlayerCard = (props) => {
@@ -28,7 +33,7 @@ const PlayerCard = (props) => {
 }
 
 PlayerCard.propTypes = {
-  player: PropTypes.object.isRequired
+  player: PropTypes.instanceOf(Player).isRequired
 };
 
 export default PlayerCard
