@@ -1,10 +1,17 @@
-import React from "react";
-import PropTypes from "prop-types";
+// React
+import React from 'react';
+import PropTypes from 'prop-types';
+import { NavLink } from 'react-router-dom';
 import { Field, Formik } from 'formik';
-import { NavLink } from "react-router-dom";
 
-import Breadcrumb from '../Breadcrumb';
+// Models && Collections
+import GamesCollection from '../../collections/Games';
+
+// Schemas
 import MatchAddSchema from './MatchAddSchema';
+
+// Components
+import Breadcrumb from '../Breadcrumb';
 import ResultsTable from './ResultsTable';
 
 const MatchAdd = (props) => {
@@ -98,10 +105,10 @@ const MatchAdd = (props) => {
 };
 
 MatchAdd.propTypes = {
+  games: PropTypes.instanceOf(GamesCollection).isRequired,
   game_id: PropTypes.number.isRequired,
-  games: PropTypes.array.isRequired,
   results: PropTypes.array.isRequired,
-  onSubmit: PropTypes.func.isRequired
+  onSubmit: PropTypes.func.isRequired,
 };
 
 export default MatchAdd

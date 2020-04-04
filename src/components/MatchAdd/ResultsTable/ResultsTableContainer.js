@@ -1,6 +1,8 @@
+// React
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+// Components
 import ResultsTable from './ResultsTableView';
 
 class ResultsTableContainer extends Component {

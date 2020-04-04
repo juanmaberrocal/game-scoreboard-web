@@ -1,9 +1,15 @@
+// React
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { modalActions } from '../../redux/actions'
-import MatchAdd from './MatchAddView';
+//  Models && Collections
 import Match from '../../models/Match';
+
+// Components
+import MatchAdd from './MatchAddView';
+
+// Redux
+import { modalActions } from '../../redux/actions'
 
 class MatchAddContainer extends Component {
   constructor(props) {

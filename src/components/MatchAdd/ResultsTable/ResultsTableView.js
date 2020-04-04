@@ -1,6 +1,10 @@
+// React
 import React from "react";
 import PropTypes from "prop-types";
 import { Field, FieldArray } from 'formik';
+
+// Models && Collections
+import PlayersCollection from '../../../collections/Players';
 
 const ResultsTableHeader = (props) => (
   <div className="ResultsTableHeader">
@@ -13,7 +17,7 @@ const ResultsTableHeader = (props) => (
 );
 
 const ResultsTableRow = (props) => {
-  const playersAvailable = [...props.players].filter((player) => (
+  const playersAvailable = props.players.filter((player) => (
     player.id === 0 ||
     player.id === parseInt(props.playerSelected) ||
     !props.playersSelected.includes(player.id)
@@ -104,7 +108,7 @@ const ResultsTable = (props) => {
 };
 
 ResultsTable.propTypes = {
-  players: PropTypes.array.isRequired,
+  players: PropTypes.instanceOf(PlayersCollection).isRequired,
   value: PropTypes.array.isRequired,
   errors: PropTypes.array.isRequired
 };
