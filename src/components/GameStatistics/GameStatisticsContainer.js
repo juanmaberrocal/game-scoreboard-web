@@ -1,6 +1,11 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+// React
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
+// Models && Collections
+import GameModel from '../../models/Game';
+
+// Components
 import GameStatistics from './GameStatisticsView';
 
 class GameStatisticsContainer extends Component {
@@ -24,7 +29,7 @@ class GameStatisticsContainer extends Component {
 
   render() {
     if (this.state.loading) return (<div>LOADING</div>);
-    
+
     return (
       <GameStatistics
         layout={this.props.layout}
@@ -34,7 +39,7 @@ class GameStatisticsContainer extends Component {
 }
 
 GameStatisticsContainer.propTypes = {
-  game: PropTypes.object.isRequired
+  game: PropTypes.instanceOf(GameModel).isRequired
 };
 
 export default GameStatisticsContainer;

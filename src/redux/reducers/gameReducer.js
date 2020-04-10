@@ -1,7 +1,9 @@
+import Games from '../../collections/Games';
+
 const DEFAULT = {
   isFetching: false,
   lastFetched: null,
-  games: []
+  games: (new Games())
 }
 
 const gameReducer = (state = DEFAULT, action) => {

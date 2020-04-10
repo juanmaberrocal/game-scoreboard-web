@@ -1,4 +1,4 @@
-import Player from '../../services/Player';
+import Players from '../../collections/Players';
 
 export const PLAYER_FETCH_REQUEST = 'PLAYER_FETCH_REQUEST'
 function fetchRequest() {
@@ -26,7 +26,7 @@ export const fetch = () => {
   return (dispatch) => {
     dispatch(fetchRequest());
 
-    return Player.fetch()
+    return Players.fetch()
       .then((response) => {
         if (response.success) {
           dispatch(fetchSuccess(response.players));

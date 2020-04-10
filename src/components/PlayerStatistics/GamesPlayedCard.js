@@ -1,5 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
+// React
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const GamesPlayedCard = (props) => {
   return (

@@ -1,4 +1,4 @@
-import Game from '../../services/Game';
+import Games from '../../collections/Games';
 
 export const GAME_FETCH_REQUEST = 'GAME_FETCH_REQUEST'
 function fetchRequest() {
@@ -26,7 +26,7 @@ export const fetch = () => {
   return (dispatch) => {
     dispatch(fetchRequest());
 
-    return Game.fetch()
+    return Games.fetch()
       .then((response) => {
         if (response.success) {
           dispatch(fetchSuccess(response.games));

@@ -1,24 +1,39 @@
+// React
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 
+// Components
 import Dashboard from "./DashboardView";
-import Match from '../../services/Match';
 
 class DashboardContainer extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      matches: [],
+      pendingMatches: [],
+      confirmedMatches: [],
     };
+
+    this.fetchPlayerMatches = this.fetchPlayerMatches.bind(this);
   }
 
   async componentDidMount() {
-    Match.fetch({
-      player_id: this.props.player.id
-    }).then((response) => {
+    this.fetchPlayerMatches();
+  }
+
+  fetchPlayerMatches() {
+    const player = this.props.player;
+
+    player.matches().then((response) => {
       if (response.success) {
-        this.setState({matches: response.matches});
+        const matches = response.matches;
+        const confirmedMatches = matches.confirmed();
+        const pendingMatches = matches.filter(match => match.playerResult(player.id).isPending());
+
+        this.setState({
+          confirmedMatches: confirmedMatches,
+          pendingMatches: pendingMatches,
+        });
       }
     });
   }
@@ -27,16 +42,16 @@ class DashboardContainer extends Component {
     return (
       <Dashboard
         player={this.props.player}
-        games={this.props.games}
-        matches={this.state.matches} />
+        confirmedMatches={this.state.confirmedMatches}
+        pendingMatches={this.state.pendingMatches}
+        doRefresh={this.fetchPlayerMatches} />
     );
   }
 }
 
 const mapStateToProps = state => {
   return {
-    player: state.authReducer.player,
-    games: state.gameReducer.games
+    player: state.authReducer.player
   };
 };
 

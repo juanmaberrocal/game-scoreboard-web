@@ -1,6 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
+// React
+import React from 'react';
+import PropTypes from 'prop-types';
 
+// Models && Collections
+import GamesCollection from '../../collections/Games';
+
+// Components
 import GameCard from "./GameCard"
 import Breadcrumb from '../Breadcrumb';
 
@@ -32,7 +37,7 @@ const Games = (props) => {
 };
 
 Games.propTypes = {
-  games: PropTypes.array.isRequired
+  games: PropTypes.instanceOf(GamesCollection).isRequired
 };
 
 export default Games

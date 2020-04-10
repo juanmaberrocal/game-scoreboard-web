@@ -1,9 +1,16 @@
-import React from "react";
-import PropTypes from "prop-types";
+// React
+import React from 'react';
+import PropTypes from 'prop-types';
 
+// Models && Collections
+import Player from '../../models/Player';
+
+// Components
 import HeaderBar from './HeaderBar';
 import LastMatchesList from './LastMatchesList';
+import PendingMatchesList from './PendingMatchesList';
 import PlayerStatistics from '../PlayerStatistics';
+
 
 const Dashboard = (props) => {
   return (
@@ -16,17 +23,27 @@ const Dashboard = (props) => {
         h-full w-full
         p-3 md:px-16 md:py-8
       ">
-        <div className="hidden
-          w-full border bg-white rounded shadow mb-3
-        ">HEADER</div>
-        <PlayerStatistics
-          player={props.player}
-          layout="cols" />
         <div className="
           flex flex-col flex-no-wrap
           w-full h-auto
         ">
-          <LastMatchesList games={props.games} matches={props.matches} />
+          <PendingMatchesList
+            matches={props.pendingMatches}
+            doRefresh={props.doRefresh} />
+        </div>
+        <div className="
+          flex flex-col flex-no-wrap
+          w-full h-auto
+        ">
+          <PlayerStatistics
+            player={props.player}
+            layout="cols" />
+        </div>
+        <div className="
+          flex flex-col flex-no-wrap
+          w-full h-auto
+        ">
+          <LastMatchesList matches={props.confirmedMatches} />
         </div>
       </div>
     </div>
@@ -34,9 +51,10 @@ const Dashboard = (props) => {
 };
 
 Dashboard.propTypes = {
-  player: PropTypes.object.isRequired,
-  games: PropTypes.array.isRequired,
-  matches: PropTypes.array.isRequired
+  player: PropTypes.instanceOf(Player).isRequired,
+  pendingMatches: PropTypes.array.isRequired,
+  confirmedMatches: PropTypes.array.isRequired,
+  doRefresh: PropTypes.func.isRequired,
 };
 
 export default Dashboard
