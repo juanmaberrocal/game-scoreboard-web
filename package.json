@@ -27,10 +27,12 @@
   "scripts": {
     "start": "npm-run-all --parallel watch:css start:react",
     "build": "npm-run-all build:css build:react",
+    "debug": "npm-run-all build:css build:react:debug",
     "build:css": "postcss src/assets/styles/tailwind.css -o src/index.css",
     "watch:css": "postcss src/assets/styles/tailwind.css -o src/index.css -w",
     "start:react": "react-scripts start",
     "build:react": "react-scripts build",
+    "build:react:debug": "react-scripts build -- --profile",
     "build:svgr": "svgr -d src/components/Icons/ src/assets/icons/",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
