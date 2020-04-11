@@ -58,7 +58,7 @@ const MatchAdd = (props) => {
                         block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline
                       " value={values.game_id} onChange={handleChange} onBlur={handleBlur} required>
                       <option disabled value={0}>Select a Game</option>
-                      {props.games.map((game, index) =>
+                      {props.games.sortByName().map((game, index) =>
                         <option key={index} value={game.id}>{game.name}</option>
                       )}
                     </select>

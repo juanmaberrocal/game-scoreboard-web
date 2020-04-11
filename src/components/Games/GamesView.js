@@ -26,7 +26,7 @@ const Games = (props) => {
         <div className="
           flex flex-row flex-wrap
         ">
-          {props.games.map((game, key) =>
+          {props.games.sortByName().map((game, key) =>
             <GameCard key={key}
               game={game} />
           )}
