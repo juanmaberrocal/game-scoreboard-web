@@ -17,7 +17,7 @@ const ResultsTableHeader = (props) => (
 );
 
 const ResultsTableRow = (props) => {
-  const playersAvailable = props.players.filter((player) => (
+  const playersAvailable = props.players.sortByNickname().filter((player) => (
     player.id === 0 ||
     player.id === parseInt(props.playerSelected) ||
     !props.playersSelected.includes(player.id)

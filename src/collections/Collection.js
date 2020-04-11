@@ -32,6 +32,10 @@ class Collection {
     return this.records.filter(...args);
   }
 
+  sort(...args) {
+    return this.records.sort(...args);
+  }
+
   first() {
     return this.records[0];
   }
