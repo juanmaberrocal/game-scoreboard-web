@@ -37,11 +37,11 @@ export const renew = () => {
       .then((response) => {
         if (response.success) {
           dispatch(authSuccess(response.player));
-          return true;
         } else {
           dispatch(authFail());
-          return false;
         }
+
+        return response;
       })
   }
 }
@@ -61,11 +61,11 @@ export const signup = (email, password, password_confirmation, nickname, first_n
       .then((response) => {
         if (response.success) {
           dispatch(authSuccess(response.player));
-          return true;
         } else {
           dispatch(authFail());
-          return false;
         }
+
+        return response;
       });
   }
 }
@@ -85,11 +85,11 @@ export const login = (email, password) => {
       .then((response) => {
         if (response.success) {
           dispatch(authSuccess(response.player));
-          return true;
         } else {
           dispatch(authFail());
-          return false;
         }
+
+        return response;
       });
   }
 }

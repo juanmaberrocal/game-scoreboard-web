@@ -1,5 +1,3 @@
-import Games from '../../collections/Games';
-
 export const GAME_FETCH_REQUEST = 'GAME_FETCH_REQUEST'
 function fetchRequest() {
   return {
@@ -22,19 +20,19 @@ function fetchFail() {
   }
 }
 
-export const fetch = () => {
+export const fetch = (player) => {
   return (dispatch) => {
     dispatch(fetchRequest());
 
-    return Games.fetch()
+    return player.games()
       .then((response) => {
         if (response.success) {
           dispatch(fetchSuccess(response.games));
-          return true;
         } else {
           dispatch(fetchFail());
-          return false;
         }
+
+        return response;
       })
   }
 }

@@ -1,7 +1,11 @@
+// React
 import React, { Component } from 'react';
 
-import API from '../../services/Api';
+// Components
 import SplashScreen from './SplashScreenView'
+
+// Services
+import API from '../../services/Api';
 
 function SplashScreenContainer(WrappedComponent) {
   return class extends Component {
@@ -33,12 +37,12 @@ function SplashScreenContainer(WrappedComponent) {
         .then(response => {
           // API is awake
           this.props.renew()
-            .then((didRenew) => {
+            .then(async (response) => {
               // user was previously logged in
-              if (didRenew) {
+              if (response.success) {
                 // load game and player data
-                this.props.fetchGames();
-                this.props.fetchPlayers();
+                await this.props.fetchGames(response.player);
+                await this.props.fetchPlayers();
               }
 
               this.setState({loading: false});
