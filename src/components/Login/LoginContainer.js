@@ -1,13 +1,17 @@
+// React
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 
+// Components
+import Login from './LoginView'
+
+// Redux
 import {
   authActions,
   gameActions,
   playerActions,
   modalActions
 } from '../../redux/actions'
-import Login from './LoginView'
 
 class LoginContainer extends Component {
   constructor(props) {
@@ -23,25 +27,27 @@ class LoginContainer extends Component {
   onSubmit = (values, { setSubmitting }) => {
     setSubmitting(true);
 
-    this.props.login(values.email, values.password)
-      .then((didLogin) => {
-        if (didLogin) {
-          // load game and player data
-          this.props.fetchGames();
-          this.props.fetchPlayers();
+    this.props.login(
+      values.email,
+      values.password
+    ).then(async (response) => {
+      if (response.success) {
+        // load game and player data
+        await this.props.fetchGames(response.player);
+        await this.props.fetchPlayers();
 
-          // navigate to dashboard
-          this.props.history.push('/');
-        } else {
-          this.props.openAlert({
-            type: 'error',
-            header: 'Log In Error',
-            body: 'Please verify your username and password!'
-          });
+        // navigate to dashboard
+        this.props.history.push('/');
+      } else {
+        this.props.openAlert({
+          type: 'error',
+          header: 'Log In Error',
+          body: 'Please verify your username and password!'
+        });
 
-          setSubmitting(false);
-        }
-      });
+        setSubmitting(false);
+      }
+    });
   }
 
   render () {
@@ -57,7 +63,7 @@ class LoginContainer extends Component {
 const mapDispatchToProps = (dispatch) => (
   {
     login: (email, password) => (dispatch(authActions.login(email, password))),
-    fetchGames: () => (dispatch(gameActions.fetch())),
+    fetchGames: (player) => (dispatch(gameActions.fetch(player))),
     fetchPlayers: () => (dispatch(playerActions.fetch())),
     openAlert: (props) => (dispatch(modalActions.open(props))),
   }

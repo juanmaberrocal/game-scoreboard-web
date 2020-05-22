@@ -25,6 +25,18 @@ class Player extends Model {
       });
   }
 
+  games() {
+    const url = `${this._v1Url()}/games`
+
+    return API.get(url)
+      .then((response) => {
+        return { success: true, games: response.serializedData };
+      })
+      .catch((error) => {
+        return { success: false };
+      });
+  }
+
   matches() {
     const url = `${this._v1Url()}/matches`
 

@@ -1,11 +1,15 @@
+// React
 import { connect } from 'react-redux';
 
+// Components
+import SplashScreen from './SplashScreenContainer'
+
+// Redux
 import {
   authActions,
   gameActions,
   playerActions
 } from '../../redux/actions'
-import SplashScreen from './SplashScreenContainer'
 
 /*
  withSplashScreen is a wrapper component that is called
@@ -20,7 +24,7 @@ function withSplashScreen(WrappedComponent) {
 const mapDispatchToProps = (dispatch) => (
   {
     renew: () => (dispatch(authActions.renew())),
-    fetchGames: () => (dispatch(gameActions.fetch())),
+    fetchGames: (player) => (dispatch(gameActions.fetch(player))),
     fetchPlayers: () => (dispatch(playerActions.fetch()))
   }
 );

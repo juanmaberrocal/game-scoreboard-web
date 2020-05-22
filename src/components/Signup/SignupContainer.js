@@ -1,13 +1,17 @@
+// React
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 
+// Components
+import Signup from './SignupView'
+
+// Redux
 import {
   authActions,
   gameActions,
   playerActions,
   modalActions
 } from '../../redux/actions'
-import Signup from './SignupView'
 
 class SignupContainer extends Component {
   constructor(props) {
@@ -34,11 +38,11 @@ class SignupContainer extends Component {
       values.nickname,
       values.first_name,
       values.last_name
-    ).then((didSignup) => {
-      if (didSignup) {
+    ).then(async (response) => {
+      if (response.success) {
         // load game and player data
-        this.props.fetchGames();
-        this.props.fetchPlayers();
+        await this.props.fetchGames(response.player);
+        await this.props.fetchPlayers();
 
         // navigate to dashboard
         this.props.history.push('/');
@@ -72,7 +76,7 @@ const mapDispatchToProps = (dispatch) => (
   {
     signup: (email, password, password_confirmation, nickname, first_name, last_name) =>
       (dispatch(authActions.signup(email, password, password_confirmation, nickname, first_name, last_name))),
-    fetchGames: () => (dispatch(gameActions.fetch())),
+    fetchGames: (player) => (dispatch(gameActions.fetch(player))),
     fetchPlayers: () => (dispatch(playerActions.fetch())),
     openAlert: (props) => (dispatch(modalActions.open(props))),
   }
